@@ -39,7 +39,7 @@ public class Rook extends Piece {
                 y_dir=1;
         }
 
-        int [][] path = new int[2][pairs];
+        int [][] path = new int[2][pairs-1];
         if(pairs-1>0)
         {
             for(int i=0;i<pairs-1;i++)

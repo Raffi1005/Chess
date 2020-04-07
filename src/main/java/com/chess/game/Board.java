@@ -20,7 +20,6 @@ public class Board {
 
     }
 
-
     public void setPieces() {
         setWhitePlayerPieces();
         setBlackPlayerPieces();

@@ -40,6 +40,4 @@ public class Game {
         else
             blackPlayer.goesFirst = false;
     }
-
-
 }

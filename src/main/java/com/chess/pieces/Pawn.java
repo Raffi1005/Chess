@@ -6,7 +6,7 @@ import com.chess.game.Player;
 public class Pawn extends Piece {
     Type type;
 
-    public Pawn(int x, int y, Player player, Type type) {
+    public Pawn(int x, int y, Player player) {
         super(x, y, player);
         this.type = Type.PAWN;
     }

@@ -5,7 +5,7 @@ import com.chess.game.Player;
 public abstract class Piece {
     public int x;
     public int y;
-    protected Player player;
+    public Player player;
 
     Piece(int x,int y,Player player)
     {

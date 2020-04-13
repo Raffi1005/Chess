@@ -1,9 +1,10 @@
 package com.chess.game;
 
-import com.chess.pieces.Piece;
-import com.chess.pieces.Rook;
+import com.chess.pieces.*;
+import com.chess.exceptions.*;
 
 import java.util.Vector;
+
 
 public class Board {
     public int width,height;
@@ -38,20 +39,64 @@ public class Board {
 
     private void setBlackPlayerPieces() {
         Piece[][] board = this.boardArray;
-        Piece topLeftRook = new Rook(0,0,game.blackPlayer);
-        Piece topRightRook = new Rook(7,0,game.blackPlayer);
+        for(int i=0;i<8;i++) {
+            Piece pawn = new Pawn(i, 1, game.whitePlayer);
+        }
+
+        Piece blackLeftRook = new Rook(0,0,game.blackPlayer);
+        Piece blackRightRook = new Rook(7,0,game.blackPlayer);
+
+        Piece blackLeftKnight = new Knight(1,0,game.blackPlayer);
+        Piece blackRightKnight = new Knight(6,0,game.blackPlayer);
+
+        Piece blackLeftBishop = new Bishop(2,0,game.blackPlayer);
+        Piece blackRightBishop = new Bishop(5,0,game.blackPlayer);
+
+        Piece blackQueen = new Queen(3,0,game.blackPlayer);
+        Piece blackKing = new King(4,0,game.blackPlayer);
+
     }
 
     private void setWhitePlayerPieces() {
         Piece[][] board = this.boardArray;
-        Piece bottomLeftRook = new Rook(0,7,game.whitePlayer);
-        Piece bottomRightRook = new Rook(7,7,game.whitePlayer);
+        for(int i=0;i<8;i++) {
+            Piece pawn = new Pawn(i, 6, game.whitePlayer);
+        }
+
+        Piece whiteLeftRook = new Rook(0,7,game.whitePlayer);
+        Piece whiteRightRook = new Rook(7,7,game.whitePlayer);
+
+        Piece whiteLeftKnight = new Knight(1,7,game.whitePlayer);
+        Piece whiteRightKnight = new Knight(6,7,game.whitePlayer);
+
+        Piece whiteLeftBishop = new Bishop(2,7,game.whitePlayer);
+        Piece whiteRightBishop = new Bishop(5,7,game.whitePlayer);
+
+        Piece whiteQueen = new Queen(3,7,game.whitePlayer);
+        Piece whiteKing = new King(4,7,game.whitePlayer);
 
     }
 
-    public void movePiece(int final_x,int final_y,Piece piece)
+    public void movePiece(Piece piece,int final_x,int final_y)
     {
-        setNewPieceLocation(piece,final_x,final_y);
+
+        if(isValidMove(piece,final_x,final_y)&&piece.isValidPath(final_x,final_y)) {
+            if (isCapture(piece, final_x, final_y)) {
+                game.capture = true;
+                boardArray[final_x][final_y] = null;
+            }
+            setNewPieceLocation(piece, final_x, final_y);
+        }
+        else {
+            try {
+                throw new InvalidMovementException();
+            } catch (InvalidMovementException e) {
+                e.printStackTrace();
+                game.invalid = true;
+            }
+        }
+            return;
+
     }
 
     private void setNewPieceLocation(Piece piece, int final_x, int final_y) {
@@ -63,5 +108,67 @@ public class Board {
 
         boardArray[final_x][final_y]=piece;
         boardArray[start_x][start_y]=null;
+    }
+
+    public boolean isValidMove(Piece piece,int final_x,int final_y)
+    {
+        int[][] path = piece.drawPath(piece.x,piece.y,final_x,final_y);
+
+        return isWithinBounds(final_x, final_y) &&
+                isValidLeap(piece, path) &&
+                isNotOrigin(piece, final_x, final_y) &&
+                isValidEndPoint(piece, final_x, final_y) &&
+                isCapture(piece, final_x, final_y);
+
+
+    }
+
+    protected boolean isWithinBounds(int final_x,int final_y)
+    {
+        return final_x <width && final_x >= 0 && final_y >= 0 && final_y < width;
+    }
+
+    protected boolean isValidLeap(Piece piece,int[][] movePath)
+    {
+        if(piece.getType()==Type.KNIGHT)
+            return true;
+
+        if(piece.getType()==Type.PAWN||piece.getType()==Type.KING)
+            return true;
+
+        int pairs = movePath[0].length;
+
+        for(int i=0;i<pairs-1;i++)
+        {
+            if(boardArray[movePath[0][i]][movePath[1][i]]!=null)
+                return false;
+        }
+        return true;
+    }
+
+    protected boolean isNotOrigin(Piece piece,int final_x,int final_y)
+    {
+        return piece.x != final_x || piece.y != final_y;
+    }
+
+    protected boolean isValidEndPoint(Piece piece, int final_x, int final_y)
+    {
+        return (boardArray[final_x][final_y] == null) ||
+                (boardArray[final_x][final_y] != null &&
+                        boardArray[final_x][final_y].player.playerColor != piece.player.playerColor);
+    }
+
+    protected boolean isCapture(Piece piece,int final_x,int final_y)
+    {
+        if(boardArray[final_x][final_y] != null &&
+                boardArray[final_x][final_y].player != piece.player)
+        {
+            if(boardArray[final_x][final_y].getType()==Type.KING)
+            {
+                boardArray[final_x][final_y].player.isLoser = true;
+                return true;
+            }
+        }
+        return false;
     }
 }

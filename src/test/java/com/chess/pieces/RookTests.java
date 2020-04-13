@@ -9,12 +9,12 @@ public class RookTests {
 
 
     @Test
-    public void moveVerticallyUp()
+    public void moveVerticallyUp() throws Exception
     {
         Game game = new Game();
-        Piece rook = new Rook(5,5,game.whitePlayer);
-        game.gameboard.movePiece(5,7,rook);
-        Assert.assertNotEquals(rook,game.gameboard.boardArray[5][5]);
-        Assert.assertEquals(rook,game.gameboard.boardArray[5][7]);
+        Piece rook = new Rook(4,4,game.whitePlayer);
+        game.gameboard.movePiece(rook,4,5);
+        Assert.assertEquals(rook,game.gameboard.boardArray[4][5]);
+        Assert.assertNotEquals(rook,game.gameboard.boardArray[4][4]);
     }
 }

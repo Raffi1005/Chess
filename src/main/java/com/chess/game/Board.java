@@ -117,15 +117,14 @@ public class Board {
         return isWithinBounds(final_x, final_y) &&
                 isValidLeap(piece, path) &&
                 isNotOrigin(piece, final_x, final_y) &&
-                isValidEndPoint(piece, final_x, final_y) &&
-                isCapture(piece, final_x, final_y);
+                isValidEndPoint(piece, final_x, final_y);
 
 
     }
 
     protected boolean isWithinBounds(int final_x,int final_y)
     {
-        return final_x <width && final_x >= 0 && final_y >= 0 && final_y < width;
+        return (final_x <width && final_x >= 0 && final_y >= 0 && final_y < width);
     }
 
     protected boolean isValidLeap(Piece piece,int[][] movePath)

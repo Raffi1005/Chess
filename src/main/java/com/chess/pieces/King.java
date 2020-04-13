@@ -2,8 +2,6 @@ package com.chess.pieces;
 
 import com.chess.game.Player;
 
-import javax.swing.*;
-
 public class King extends Piece {
 
     Type type;

@@ -12,7 +12,7 @@ public abstract class Piece {
         this.x=x;
         this.y=y;
         this.player=player;
-        this.player.myGame.gameboard.boardArray[x][y]=this;
+        this.player.myGame.gameBoard.boardArray[x][y]=this;
     }
 
     public abstract boolean isValidPath(int final_x, int final_y);

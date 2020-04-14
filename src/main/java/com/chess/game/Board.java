@@ -18,7 +18,6 @@ public class Board {
         this.height=height;
         boardArray=new Piece[width][height];
         this.game=game;
-
     }
 
     public void setPieces() {
@@ -40,47 +39,47 @@ public class Board {
     private void setBlackPlayerPieces() {
         Piece[][] board = this.boardArray;
         for(int i=0;i<8;i++) {
-            Piece pawn = new Pawn(i, 1, game.whitePlayer);
+            Piece pawn = new Pawn(i, 1, this.game.blackPlayer);
         }
 
-        Piece blackLeftRook = new Rook(0,0,game.blackPlayer);
-        Piece blackRightRook = new Rook(7,0,game.blackPlayer);
+        Piece blackLeftRook = new Rook(0,0,this.game.blackPlayer);
+        Piece blackRightRook = new Rook(7,0,this.game.blackPlayer);
 
-        Piece blackLeftKnight = new Knight(1,0,game.blackPlayer);
-        Piece blackRightKnight = new Knight(6,0,game.blackPlayer);
+        Piece blackLeftKnight = new Knight(1,0,this.game.blackPlayer);
+        Piece blackRightKnight = new Knight(6,0,this.game.blackPlayer);
 
-        Piece blackLeftBishop = new Bishop(2,0,game.blackPlayer);
-        Piece blackRightBishop = new Bishop(5,0,game.blackPlayer);
+        Piece blackLeftBishop = new Bishop(2,0,this.game.blackPlayer);
+        Piece blackRightBishop = new Bishop(5,0,this.game.blackPlayer);
 
-        Piece blackQueen = new Queen(3,0,game.blackPlayer);
-        Piece blackKing = new King(4,0,game.blackPlayer);
+        Piece blackQueen = new Queen(3,0,this.game.blackPlayer);
+        Piece blackKing = new King(4,0,this.game.blackPlayer);
 
     }
 
     private void setWhitePlayerPieces() {
         Piece[][] board = this.boardArray;
         for(int i=0;i<8;i++) {
-            Piece pawn = new Pawn(i, 6, game.whitePlayer);
+            Piece pawn = new Pawn(i, 6, this.game.whitePlayer);
         }
 
-        Piece whiteLeftRook = new Rook(0,7,game.whitePlayer);
-        Piece whiteRightRook = new Rook(7,7,game.whitePlayer);
+        Piece whiteLeftRook = new Rook(0,7,this.game.whitePlayer);
+        Piece whiteRightRook = new Rook(7,7,this.game.whitePlayer);
 
-        Piece whiteLeftKnight = new Knight(1,7,game.whitePlayer);
-        Piece whiteRightKnight = new Knight(6,7,game.whitePlayer);
+        Piece whiteLeftKnight = new Knight(1,7,this.game.whitePlayer);
+        Piece whiteRightKnight = new Knight(6,7,this.game.whitePlayer);
 
-        Piece whiteLeftBishop = new Bishop(2,7,game.whitePlayer);
-        Piece whiteRightBishop = new Bishop(5,7,game.whitePlayer);
+        Piece whiteLeftBishop = new Bishop(2,7,this.game.whitePlayer);
+        Piece whiteRightBishop = new Bishop(5,7,this.game.whitePlayer);
 
-        Piece whiteQueen = new Queen(3,7,game.whitePlayer);
-        Piece whiteKing = new King(4,7,game.whitePlayer);
+        Piece whiteQueen = new Queen(3,7,this.game.whitePlayer);
+        Piece whiteKing = new King(4,7,this.game.whitePlayer);
 
     }
 
     public void movePiece(Piece piece,int final_x,int final_y)
     {
 
-        if(isValidMove(piece,final_x,final_y)&&piece.isValidPath(final_x,final_y)) {
+        if(piece.isValidPath(final_x,final_y)&&isValidMove(piece,final_x,final_y)) {
             if (isCapture(piece, final_x, final_y)) {
                 game.capture = true;
                 boardArray[final_x][final_y] = null;
@@ -95,7 +94,6 @@ public class Board {
                 game.invalid = true;
             }
         }
-            return;
 
     }
 
@@ -114,10 +112,13 @@ public class Board {
     {
         int[][] path = piece.drawPath(piece.x,piece.y,final_x,final_y);
 
-        return isWithinBounds(final_x, final_y) &&
-                isValidLeap(piece, path) &&
-                isNotOrigin(piece, final_x, final_y) &&
-                isValidEndPoint(piece, final_x, final_y);
+        if(isWithinBounds(final_x,final_y)&& (isValidLeap(piece, path))&& (isNotOrigin(piece, final_x, final_y))
+                && (isValidEndPoint(piece, final_x, final_y)))
+        {
+            return true;
+        }
+
+        return false;
 
 
     }
@@ -147,7 +148,7 @@ public class Board {
 
     protected boolean isNotOrigin(Piece piece,int final_x,int final_y)
     {
-        return piece.x != final_x || piece.y != final_y;
+        return (piece.x != final_x || piece.y != final_y);
     }
 
     protected boolean isValidEndPoint(Piece piece, int final_x, int final_y)

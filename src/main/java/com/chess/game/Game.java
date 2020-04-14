@@ -3,7 +3,7 @@ package com.chess.game;
 import java.util.Random;
 
 public class Game {
-    public Board gameboard;
+    public Board gameBoard;
     public Player whitePlayer, blackPlayer;
     public int turn;
     final static int standardHeight=8,standardWidth=8;
@@ -16,9 +16,9 @@ public class Game {
     }
     //Creating board,pieces and players
     private void StartGame() {
-        gameboard=new Board(standardHeight,standardWidth,this);
+        gameBoard =new Board(standardHeight,standardWidth,this);
         setPlayers();
-        gameboard.setPieces();
+        gameBoard.setPieces();
         turn=1;
     }
     //Creating players

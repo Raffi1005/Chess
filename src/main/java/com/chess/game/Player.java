@@ -22,9 +22,9 @@ public class Player {
         Vector<Piece> allyPieces;
 
         if(playerColor==Color.WHITE)
-            allyPieces = myGame.gameboard.whitePieces;
+            allyPieces = myGame.gameBoard.whitePieces;
         else
-            allyPieces = myGame.gameboard.blackPieces;
+            allyPieces = myGame.gameBoard.blackPieces;
 
         return allyPieces;
     }
@@ -34,9 +34,9 @@ public class Player {
         Vector<Piece> enemyPieces;
 
         if(playerColor==Color.WHITE)
-            enemyPieces = myGame.gameboard.blackPieces;
+            enemyPieces = myGame.gameBoard.blackPieces;
         else
-            enemyPieces = myGame.gameboard.whitePieces;
+            enemyPieces = myGame.gameBoard.whitePieces;
 
         return enemyPieces;
     }

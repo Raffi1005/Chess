@@ -13,22 +13,36 @@ public class Pawn extends Piece {
 
     @Override
     public boolean isValidPath(int final_x, int final_y) {
+
+
      if(pawnCanMoveTwo(final_x,final_y))
          return true;
 
      if(pawnCanCapture(final_x,final_y))
          return true;
 
-        return pawnCanMoveForward(final_x, final_y);
+     if(pawnCanMoveForward(final_x, final_y))
+         return true;
+
+     else
+     {
+        return false;
+     }
     }
 
     private boolean pawnCanMoveForward(int final_x, int final_y) {
-        int y_dif=final_y-this.y;
+        int abs_Y_diff = Math.abs(final_y - this.y);
+        int Y_diff = final_y - this.y;
+        Piece[][] board = this.player.myGame.gameBoard.boardArray;
 
-        Piece[][] board = this.player.myGame.gameboard.boardArray;
-        return (((this.player.playerColor == Color.WHITE&& y_dif == -1) ||
-                (this.player.playerColor == Color.BLACK && y_dif == 1)) &&
-                board[final_x][final_y]==null && this.x==final_x);
+        if(((this.player.playerColor == Color.WHITE && Y_diff < 0 && abs_Y_diff == 1 ) ||
+                (this.player.playerColor == Color.BLACK && Y_diff > 0 && abs_Y_diff == 1)) &&
+                board[final_x][final_y] == null && this.x == final_x)
+        {
+            return true;
+        }
+
+        return false;
     }
 
     private boolean pawnCanCapture(int final_x, int final_y) {
@@ -36,7 +50,7 @@ public class Pawn extends Piece {
         int AbsY_dif =Math.abs(final_y-this.y);
         int Y_dif=final_y-this.y;
 
-        Piece[][] board = this.player.myGame.gameboard.boardArray;
+        Piece[][] board = this.player.myGame.gameBoard.boardArray;
         if(AbsX_dif == AbsY_dif&&AbsX_dif==1)
         {
             if(player.playerColor==Color.WHITE&&board[final_x][final_y]!=null&&
@@ -54,7 +68,7 @@ public class Pawn extends Piece {
     private boolean pawnCanMoveTwo(int final_x, int final_y) {
         int AbsY_dif =Math.abs(final_y-this.y);
 
-        Piece[][] board = this.player.myGame.gameboard.boardArray;
+        Piece[][] board = this.player.myGame.gameBoard.boardArray;
         return (final_x == this.x && AbsY_dif == 2 && board[final_x][final_y] == null) &&
                 ((this.player.playerColor == Color.WHITE && board[this.x][this.y - 1] == null) ||
                         (this.player.playerColor == Color.BLACK && board[this.x][this.y + 1] == null));

@@ -12,8 +12,6 @@ import javax.swing.border.Border;
 import javax.swing.border.MatteBorder;
 
 
-//TODO Timer i przyciski w gownym oknie
-
 public class ChessBoardGUI extends JPanel {
 
     Game game;
@@ -22,13 +20,15 @@ public class ChessBoardGUI extends JPanel {
     JButton selectedSquare;
     boolean endTurn = false;
     JFrame frame;
+    MyTimer whiteTimer;
+    MyTimer blackTimer;
 
     public static void main(String[] args) throws InterruptedException {
+
         Chess inst = new Chess();
-        ChessBoardGUI gui = inst.startGame();
+        ChessBoardGUI gui = inst.getChessBoardGUI();
         inst.gameLoop(gui);
     }
-
 
     public synchronized void waitForInput()
     {
@@ -51,31 +51,139 @@ public class ChessBoardGUI extends JPanel {
      */
     public ChessBoardGUI() {
         EventQueue.invokeLater(new Runnable() {
+
+
             @Override
             public void run() {
-                JFrame frame = new JFrame("Chess");
-                frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-                frame.setSize(1280,765);
-                frame.setLayout(new BorderLayout());
-                JPanel panel = new JPanel();
-                ChessWindow window = new ChessWindow();
-                panel.setEnabled(true);
-                panel.add(window);
-                frame.add(panel,BorderLayout.WEST);
-                frame.setLocationRelativeTo(null);
-                frame.setVisible(true);
+                createFrame();
+                //createMenu();
+                createGame();
+               // startGame();
             }
         });
     }
 
+    public void createMenu(){
+        final JPanel panel = new JPanel();
+        panel.setLayout(new GridBagLayout());
+        panel.setBackground(Color.GRAY);
+        GridBagConstraints gbc = new GridBagConstraints();
 
-    public void resetGrid() {
+
+        gbc.insets = new Insets(20, 20, 0, 0);
+
+        JLabel title = new JLabel("CHESS");
+        title.setFont(new Font("Courier New", Font.ITALIC, 20));
+        title.setForeground(Color.BLUE);
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        panel.add(title, gbc);
+
+        JButton newGameButton = new JButton("New Game");
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        panel.add(newGameButton, gbc);
+        newGameButton.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.getGlassPane().setVisible(false);
+                startGame();
+            }
+        });
+
+        JButton exit = new JButton("Exit");
+        gbc.gridx = 0;
+        gbc.gridy = 2;
+        panel.add(exit, gbc);
+        exit.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.exit(0);
+            }
+        });
+        frame.add(panel);
+
+        frame.setVisible(true);
+        frame.setLocationRelativeTo(null);
+    }
+
+
+    public void startGame()
+    {
+        Chess inst = new Chess();
+        inst.gameLoop(this);
+        createGame();
+    }
+
+    public void createGame()
+    {
+        createChessBoard();
+        createBlackTimer();
+        createWhiteTimer();
+    }
+
+    public void createFrame()
+    {
+        frame = new JFrame("Chess");
+        ImageIcon imageIcon = new ImageIcon("E:\\Studia\\Rok 2\\Semestr 4\\JTP\\Chess\\src\\main\\java\\com\\chess\\GUI\\Assets\\BlackRook.png");
+        frame.setIconImage(imageIcon.getImage());
+        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        frame.setSize(740,840);
+        frame.setLayout(new BorderLayout());
+        frame.setVisible(true);
+        frame.setLocationRelativeTo(null);
+    }
+
+
+    public void createChessBoard(){
+        JPanel panel = new JPanel();
         ChessWindow window = new ChessWindow();
-        frame.add(window);
-        frame.pack();
+        panel.setEnabled(true);
+        panel.add(window);
+        panel.setVisible(true);
+        frame.add(panel,BorderLayout.WEST);
+    }
+
+    public void createBlackTimer()
+    {
+        JPanel panel = new JPanel();
+        panel.setLayout(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = new Insets(5,50,5,0);
+        blackTimer = new MyTimer();
+        panel.setEnabled(true);
+        gbc.gridx=0;
+        gbc.gridy=0;
+        panel.add(blackTimer,gbc);
+        frame.add(panel,BorderLayout.NORTH);
+    }
+
+
+
+    public void createWhiteTimer()
+    {
+        JPanel panel = new JPanel();
+        panel.setLayout(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = new Insets(10,50,10,0);
+        whiteTimer = new MyTimer();
+        panel.setEnabled(true);
+        gbc.gridx=0;
+        gbc.gridy=0;
+        panel.add(whiteTimer,gbc);
+        frame.add(panel,BorderLayout.SOUTH);
+    }
+
+    /*public void resetGrid() {
+        frame.setVisible(false);
+        createFrame();
+        JPanel chessBoard = createChessBoard();
+        frame.add(chessBoard,BorderLayout.WEST);
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
-    }
+    }*/
 
     class MyActionListener implements ActionListener{
 
@@ -151,7 +259,7 @@ public class ChessBoardGUI extends JPanel {
 
             GridBagConstraints gbc = new GridBagConstraints();
 
-           /* for (int row = 0; row < 9; row++) {
+            /*for (int row = 0; row < 9; row++) {
                 for (int col = 0; col < 8; col++) {
                     JLabel label = new JLabel();
                     if (col == 8 && row < 8) {
@@ -168,7 +276,6 @@ public class ChessBoardGUI extends JPanel {
                     for (int col = 0; col < 8; col++) {
                         gbc.gridx = col;
                         gbc.gridy = row;
-                        //gbc.gridwidth = gbc.gridheight = 1;
 
                         Border border = null;
                         if (row < 8) {
@@ -307,4 +414,5 @@ public class ChessBoardGUI extends JPanel {
                 }
             }
         }
-    }
+
+}

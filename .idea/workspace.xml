@@ -19,26 +19,22 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="Fixed few bugs with moving pieces">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="Added GUI and made game loop">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Chess/com/chess/game/Board.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Chess/com/chess/game/Board.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Chess/com/chess/game/Color.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Chess/com/chess/game/Color.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Chess/com/chess/game/Game.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Chess/com/chess/game/Game.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Chess/com/chess/game/Player.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Chess/com/chess/game/Player.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Chess/com/chess/pieces/Bishop.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Chess/com/chess/pieces/Bishop.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Chess/com/chess/pieces/Piece.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Chess/com/chess/pieces/Piece.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Chess/com/chess/pieces/Rook.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Chess/com/chess/pieces/Rook.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Chess/com/chess/pieces/Type.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Chess/com/chess/pieces/Type.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/test/Chess/com/chess/pieces/RookTests.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/test/Chess/com/chess/pieces/RookTests.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Chess/com/chess/GUI/Chess.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Chess/com/chess/GUI/Chess.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Chess/com/chess/GUI/ChessBoardGUI$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Chess/com/chess/GUI/ChessBoardGUI$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Chess/com/chess/GUI/ChessBoardGUI$ChessWindow.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Chess/com/chess/GUI/ChessBoardGUI$ChessWindow.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Chess/com/chess/GUI/ChessBoardGUI$MyActionListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Chess/com/chess/GUI/ChessBoardGUI$MyActionListener.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Chess/com/chess/GUI/ChessBoardGUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Chess/com/chess/GUI/ChessBoardGUI.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Chess/com/chess/game/MyTimer$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Chess/com/chess/game/MyTimer$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Chess/com/chess/game/MyTimer$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Chess/com/chess/game/MyTimer$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Chess/com/chess/game/MyTimer$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Chess/com/chess/game/MyTimer$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Chess/com/chess/game/MyTimer$4.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Chess/com/chess/game/MyTimer$5.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Chess/com/chess/game/MyTimer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Chess/com/chess/game/MyTimer.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/chess/GUI/Chess.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/chess/GUI/Chess.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/chess/GUI/ChessBoardGUI.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/chess/game/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/chess/game/Board.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/chess/game/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/chess/game/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/chess/game/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/chess/game/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/chess/pieces/Pawn.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/chess/pieces/Pawn.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/chess/pieces/Piece.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/chess/pieces/Piece.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/chess/pieces/RookTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/chess/pieces/RookTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/chess/GUI/ChessBoardGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/chess/GUI/ChessBoardGUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/chess/game/MyTimer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/chess/game/MyTimer.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -222,6 +218,20 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Menu" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.chess.GUI.Menu" />
+      <module name="Chess" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.chess.GUI.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration default="true" type="Application" factoryName="Application">
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <method v="2">
@@ -267,26 +277,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="RookTests.moveVerticallyUp" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Chess" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.chess.pieces.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.chess.pieces" />
-      <option name="MAIN_CLASS_NAME" value="com.chess.pieces.RookTests" />
-      <option name="METHOD_NAME" value="moveVerticallyUp" />
-      <option name="TEST_OBJECT" value="method" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="moduleWithDependencies" />
-      </option>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration default="true" type="JUnit" factoryName="JUnit">
       <option name="TEST_OBJECT" value="class" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
@@ -321,10 +311,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.ChessBoardGUI" />
+        <item itemvalue="Application.Menu" />
         <item itemvalue="JUnit.PawnTests" />
         <item itemvalue="JUnit.PawnTests.canMoveForward" />
         <item itemvalue="Application.GUI" />
-        <item itemvalue="JUnit.RookTests.moveVerticallyUp" />
       </list>
     </recent_temporary>
   </component>
@@ -361,7 +351,9 @@
       <workItem from="1586888805371" duration="724000" />
       <workItem from="1586889543698" duration="1604000" />
       <workItem from="1586891775869" duration="3939000" />
-      <workItem from="1586895754808" duration="964000" />
+      <workItem from="1586895754808" duration="1283000" />
+      <workItem from="1586941930940" duration="6964000" />
+      <workItem from="1586952684314" duration="14818000" />
     </task>
     <task id="LOCAL-00001" summary="Fixing bugs">
       <created>1586205657024</created>
@@ -412,7 +404,21 @@
       <option name="project" value="LOCAL" />
       <updated>1586791464553</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Added GUI and made game loop">
+      <created>1586897002347</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1586897002347</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Added GUI and made game loop">
+      <created>1586897023871</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1586897023871</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -439,7 +445,8 @@
     <MESSAGE value="Added Pawn and Queen" />
     <MESSAGE value="Finished pieces, added move piece function to Board, started GUI." />
     <MESSAGE value="Fixed few bugs with moving pieces" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed few bugs with moving pieces" />
+    <MESSAGE value="Added GUI and made game loop" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added GUI and made game loop" />
   </component>
   <component name="WindowStateProjectService">
     <state x="361" y="91" key="#Project_Structure" timestamp="1586204581713">
@@ -450,10 +457,10 @@
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state x="223" y="87" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.864@0.0.1536.864" timestamp="1586204615564" />
-    <state x="574" y="142" key="#com.intellij.ide.util.MemberChooser" timestamp="1586857614832">
+    <state x="574" y="142" key="#com.intellij.ide.util.MemberChooser" timestamp="1586965391533">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state x="574" y="142" key="#com.intellij.ide.util.MemberChooser/0.0.1536.864@0.0.1536.864" timestamp="1586857614832" />
+    <state x="574" y="142" key="#com.intellij.ide.util.MemberChooser/0.0.1536.864@0.0.1536.864" timestamp="1586965391533" />
     <state x="449" y="168" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1586782674773">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
@@ -466,10 +473,10 @@
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state x="490" y="103" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1536.864@0.0.1536.864" timestamp="1586878100930" />
-    <state x="499" y="179" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1586790520346">
+    <state x="499" y="179" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1586964551955">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state x="499" y="179" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.864@0.0.1536.864" timestamp="1586790520346" />
+    <state x="499" y="179" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.864@0.0.1536.864" timestamp="1586964551955" />
     <state x="424" y="2" key="CommitChangelistDialog2" timestamp="1586790051618">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
@@ -482,34 +489,50 @@
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state x="549" y="174" key="FileChooserDialogImpl/0.0.1536.864@0.0.1536.864" timestamp="1586890795402" />
-    <state width="1493" height="224" key="GridCell.Tab.0.bottom" timestamp="1586896867416">
+    <state width="1493" height="277" key="GridCell.Tab.0.bottom" timestamp="1586967871414">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1493" height="224" key="GridCell.Tab.0.bottom/0.0.1536.864@0.0.1536.864" timestamp="1586896867416" />
-    <state width="1493" height="224" key="GridCell.Tab.0.center" timestamp="1586896867416">
+    <state width="1493" height="277" key="GridCell.Tab.0.bottom/0.0.1536.864@0.0.1536.864" timestamp="1586967871414" />
+    <state width="1493" height="277" key="GridCell.Tab.0.center" timestamp="1586967871414">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1493" height="224" key="GridCell.Tab.0.center/0.0.1536.864@0.0.1536.864" timestamp="1586896867416" />
-    <state width="1493" height="224" key="GridCell.Tab.0.left" timestamp="1586896867415">
+    <state width="1493" height="277" key="GridCell.Tab.0.center/0.0.1536.864@0.0.1536.864" timestamp="1586967871414" />
+    <state width="1493" height="277" key="GridCell.Tab.0.left" timestamp="1586967871414">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1493" height="224" key="GridCell.Tab.0.left/0.0.1536.864@0.0.1536.864" timestamp="1586896867415" />
-    <state width="1493" height="224" key="GridCell.Tab.0.right" timestamp="1586896867416">
+    <state width="1493" height="277" key="GridCell.Tab.0.left/0.0.1536.864@0.0.1536.864" timestamp="1586967871414" />
+    <state width="1493" height="277" key="GridCell.Tab.0.right" timestamp="1586967871414">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1493" height="224" key="GridCell.Tab.0.right/0.0.1536.864@0.0.1536.864" timestamp="1586896867416" />
+    <state width="1493" height="277" key="GridCell.Tab.0.right/0.0.1536.864@0.0.1536.864" timestamp="1586967871414" />
+    <state width="1493" height="277" key="GridCell.Tab.1.bottom" timestamp="1586967871414">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state width="1493" height="277" key="GridCell.Tab.1.bottom/0.0.1536.864@0.0.1536.864" timestamp="1586967871414" />
+    <state width="1493" height="277" key="GridCell.Tab.1.center" timestamp="1586967871414">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state width="1493" height="277" key="GridCell.Tab.1.center/0.0.1536.864@0.0.1536.864" timestamp="1586967871414" />
+    <state width="1493" height="277" key="GridCell.Tab.1.left" timestamp="1586967871414">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state width="1493" height="277" key="GridCell.Tab.1.left/0.0.1536.864@0.0.1536.864" timestamp="1586967871414" />
+    <state width="1493" height="277" key="GridCell.Tab.1.right" timestamp="1586967871414">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state width="1493" height="277" key="GridCell.Tab.1.right/0.0.1536.864@0.0.1536.864" timestamp="1586967871414" />
     <state x="439" y="137" key="NewModule_or_Project.wizard" timestamp="1586853569142">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state x="439" y="137" key="NewModule_or_Project.wizard/0.0.1536.864@0.0.1536.864" timestamp="1586853569142" />
-    <state x="249" y="7" key="SettingsEditor" timestamp="1586791704476">
+    <state x="249" y="7" key="SettingsEditor" timestamp="1586948874779">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state x="249" y="7" key="SettingsEditor/0.0.1536.864@0.0.1536.864" timestamp="1586791704476" />
-    <state x="361" y="165" key="Vcs.Push.Dialog.v2" timestamp="1586791467936">
+    <state x="249" y="7" key="SettingsEditor/0.0.1536.864@0.0.1536.864" timestamp="1586948874779" />
+    <state x="361" y="165" key="Vcs.Push.Dialog.v2" timestamp="1586897030486">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state x="361" y="165" key="Vcs.Push.Dialog.v2/0.0.1536.864@0.0.1536.864" timestamp="1586791467936" />
+    <state x="361" y="165" key="Vcs.Push.Dialog.v2/0.0.1536.864@0.0.1536.864" timestamp="1586897030486" />
     <state x="583" y="210" key="chooseDestDirectoryDialog" timestamp="1586789232887">
       <screen x="0" y="0" width="1536" height="864" />
     </state>

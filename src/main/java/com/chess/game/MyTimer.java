@@ -8,7 +8,8 @@ import java.awt.event.ActionListener;
 import java.text.DecimalFormat;
 import java.util.concurrent.*;
 
-public class MyTimer extends JFrame {
+
+public class MyTimer extends JPanel {
 
     // GUI Components
     private JPanel panel;
@@ -32,40 +33,12 @@ public class MyTimer extends JFrame {
 
     private ExecutorService executor = Executors.newCachedThreadPool();
 
-    public MyTimer(Color color) {
-        panel = new JPanel();
-        panel.setLayout(new BorderLayout());
+    public MyTimer() {
+        setLayout(new BorderLayout());
 
         timeLabel = new JLabel();
         timeLabel.setFont(new Font("Consolas", Font.PLAIN, 13));
-        timeLabel.setHorizontalAlignment(JLabel.CENTER);
-        panel.add(timeLabel);
-
-
-        buttonPanel = new JPanel();
-        buttonPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
-
-        startButton = new JButton("Start");
-        startButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                if (!timerIsRunning)
-                    timerIsRunning = true;
-
-                executor.execute(timeTask);
-            }
-        });
-        buttonPanel.add(startButton);
-
-        stopButton = new JButton("Stop");
-        stopButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                timerIsRunning = false;
-            }
-        });
-
-        buttonPanel.add(stopButton);
-
-        panel.add(buttonPanel, BorderLayout.SOUTH);
+        add(timeLabel,BorderLayout.NORTH);
 
         timeFormatter = new DecimalFormat("00");
 
@@ -116,14 +89,26 @@ public class MyTimer extends JFrame {
                 + timeFormatter.format(seconds) + "."
                 + timeFormatter.format(centiseconds));
 
-        add(panel);
 
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLocationRelativeTo(null);
-        setTitle(color.toString());
+    }
 
-        pack();
-        setVisible(true);
+
+    public void start()
+    {
+        if (!timerIsRunning)
+            timerIsRunning = true;
+
+        executor.execute(timeTask);
+    }
+
+    public void pause()
+    {
+        timerIsRunning=false;
+    }
+
+    public boolean isDone()
+    {
+        return minutes == 0 && seconds == 0 && centiseconds == 0;
     }
 }
 

@@ -20,15 +20,13 @@ public class ChessBoardGUI extends JPanel {
     JButton selectedSquare;
     boolean endTurn = false;
     JFrame frame;
+    JPanel menu;
+    JPanel gamePanel;
+    JPanel blackTimerPanel;
+    JPanel whiteTimerPanel;
     MyTimer whiteTimer;
     MyTimer blackTimer;
-
-    public static void main(String[] args) throws InterruptedException {
-
-        Chess inst = new Chess();
-        ChessBoardGUI gui = inst.getChessBoardGUI();
-        inst.gameLoop(gui);
-    }
+    Chess inst;
 
     public synchronized void waitForInput()
     {
@@ -57,16 +55,18 @@ public class ChessBoardGUI extends JPanel {
             public void run() {
                 createFrame();
                 //createMenu();
+
                 createGame();
+
                // startGame();
             }
         });
     }
 
     public void createMenu(){
-        final JPanel panel = new JPanel();
-        panel.setLayout(new GridBagLayout());
-        panel.setBackground(Color.GRAY);
+        menu = new JPanel();
+        menu.setLayout(new GridBagLayout());
+        menu.setBackground(Color.GRAY);
         GridBagConstraints gbc = new GridBagConstraints();
 
 
@@ -77,17 +77,17 @@ public class ChessBoardGUI extends JPanel {
         title.setForeground(Color.BLUE);
         gbc.gridx = 0;
         gbc.gridy = 0;
-        panel.add(title, gbc);
+        menu.add(title, gbc);
 
         JButton newGameButton = new JButton("New Game");
         gbc.gridx = 0;
         gbc.gridy = 1;
-        panel.add(newGameButton, gbc);
+        menu.add(newGameButton, gbc);
         newGameButton.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                frame.getGlassPane().setVisible(false);
+                menu.setVisible(false);
                 startGame();
             }
         });
@@ -95,7 +95,7 @@ public class ChessBoardGUI extends JPanel {
         JButton exit = new JButton("Exit");
         gbc.gridx = 0;
         gbc.gridy = 2;
-        panel.add(exit, gbc);
+        menu.add(exit, gbc);
         exit.addActionListener(new ActionListener() {
 
             @Override
@@ -103,18 +103,28 @@ public class ChessBoardGUI extends JPanel {
                 System.exit(0);
             }
         });
-        frame.add(panel);
+        frame.add(menu);
+        //menu.setVisible(false);
 
         frame.setVisible(true);
         frame.setLocationRelativeTo(null);
     }
 
 
+
     public void startGame()
     {
-        Chess inst = new Chess();
+        if(this == null)
+        {
+            System.out.println("NULL");
+        }
+        //createGame();
+        inst = new Chess();
+        gamePanel.setVisible(true);
+        whiteTimerPanel.setVisible(true);
+        blackTimerPanel.setVisible(true);
         inst.gameLoop(this);
-        createGame();
+
     }
 
     public void createGame()
@@ -122,6 +132,7 @@ public class ChessBoardGUI extends JPanel {
         createChessBoard();
         createBlackTimer();
         createWhiteTimer();
+        //createButton();
     }
 
     public void createFrame()
@@ -130,60 +141,77 @@ public class ChessBoardGUI extends JPanel {
         ImageIcon imageIcon = new ImageIcon("E:\\Studia\\Rok 2\\Semestr 4\\JTP\\Chess\\src\\main\\java\\com\\chess\\GUI\\Assets\\BlackRook.png");
         frame.setIconImage(imageIcon.getImage());
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        frame.setSize(740,840);
+        frame.setSize(840,840);
         frame.setLayout(new BorderLayout());
         frame.setVisible(true);
         frame.setLocationRelativeTo(null);
     }
 
+    public void createButton(){
+        JButton button = new JButton("Start");
+        button.setPreferredSize(new Dimension(180, 50));
+        button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent event) {
+                inst.start(ChessBoardGUI.this);
+            }
+        });
+        button.setEnabled(true);
+        frame.add(button,BorderLayout.EAST);
+        button.setVisible(false);
+
+    }
+
 
     public void createChessBoard(){
-        JPanel panel = new JPanel();
+        gamePanel = new JPanel();
         ChessWindow window = new ChessWindow();
-        panel.setEnabled(true);
-        panel.add(window);
-        panel.setVisible(true);
-        frame.add(panel,BorderLayout.WEST);
+        gamePanel.setEnabled(true);
+        gamePanel.add(window);
+        gamePanel.setVisible(true);
+        frame.add(gamePanel,BorderLayout.WEST);
+        gamePanel.setVisible(false);
     }
 
     public void createBlackTimer()
     {
-        JPanel panel = new JPanel();
-        panel.setLayout(new GridBagLayout());
+        blackTimerPanel = new JPanel();
+        blackTimerPanel.setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(5,50,5,0);
         blackTimer = new MyTimer();
-        panel.setEnabled(true);
+        blackTimerPanel.setEnabled(true);
         gbc.gridx=0;
         gbc.gridy=0;
-        panel.add(blackTimer,gbc);
-        frame.add(panel,BorderLayout.NORTH);
+        blackTimerPanel.add(blackTimer,gbc);
+        frame.add(blackTimerPanel,BorderLayout.NORTH);
+        blackTimerPanel.setVisible(false);
     }
 
 
 
     public void createWhiteTimer()
     {
-        JPanel panel = new JPanel();
-        panel.setLayout(new GridBagLayout());
+        whiteTimerPanel = new JPanel();
+        whiteTimerPanel.setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(10,50,10,0);
         whiteTimer = new MyTimer();
-        panel.setEnabled(true);
+        whiteTimerPanel.setEnabled(true);
         gbc.gridx=0;
         gbc.gridy=0;
-        panel.add(whiteTimer,gbc);
-        frame.add(panel,BorderLayout.SOUTH);
+        whiteTimerPanel.add(whiteTimer,gbc);
+        frame.add(whiteTimerPanel,BorderLayout.SOUTH);
+        whiteTimerPanel.setVisible(false);
     }
 
-    /*public void resetGrid() {
+
+    public void resetGrid() {
         frame.setVisible(false);
         createFrame();
-        JPanel chessBoard = createChessBoard();
-        frame.add(chessBoard,BorderLayout.WEST);
-        frame.setLocationRelativeTo(null);
-        frame.setVisible(true);
-    }*/
+        createGame();
+        startGame();
+    }
 
     class MyActionListener implements ActionListener{
 
@@ -259,19 +287,6 @@ public class ChessBoardGUI extends JPanel {
 
             GridBagConstraints gbc = new GridBagConstraints();
 
-            /*for (int row = 0; row < 9; row++) {
-                for (int col = 0; col < 8; col++) {
-                    JLabel label = new JLabel();
-                    if (col == 8 && row < 8) {
-                        label.setText("" + Math.abs(row - 8));
-                    } else if (row == 8 && col < 8)
-                        label.setText("" + (char) ('A' + col));
-
-                    label.setPreferredSize(new Dimension(90, 90));
-                    label.setBackground(java.awt.Color.white);
-                    add(label, gbc);
-                }
-            }*/
                 for (int row = 0; row < 8; row++) {
                     for (int col = 0; col < 8; col++) {
                         gbc.gridx = col;
@@ -292,8 +307,6 @@ public class ChessBoardGUI extends JPanel {
                             }
                         }
                         JButton button = new JButton();
-
-
                         if (row == 1 && col < 8) {
                             Image blackPawn = null;
                             try {
@@ -403,12 +416,14 @@ public class ChessBoardGUI extends JPanel {
                         }
                         button.setBorderPainted(true);
                         button.setPreferredSize(new Dimension(90, 90));
-                        button.setBackground(java.awt.Color.white);
+                        if((row+col)%2==0) {
+                            button.setBackground(Color.WHITE);
+                        }
+                        else
+                            button.setBackground(Color.PINK);
                         MyActionListener mal = new MyActionListener();
                         button.addActionListener(mal);
                         add(button, gbc);
-
-                        //cellPane.setBorder(border);
 
                     }
                 }

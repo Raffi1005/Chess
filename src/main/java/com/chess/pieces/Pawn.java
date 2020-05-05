@@ -57,6 +57,7 @@ public class Pawn extends Piece {
                     board[final_x][final_y].player.playerColor==Color.BLACK&&Y_dif<0)
                 return true;
 
+
             if(player.playerColor==Color.BLACK&&board[final_x][final_y]!=null&&
                     board[final_x][final_y].player.playerColor==Color.WHITE&&Y_dif>0)
                 return true;

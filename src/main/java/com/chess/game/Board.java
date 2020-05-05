@@ -153,9 +153,9 @@ public class Board {
 
     protected boolean isValidEndPoint(Piece piece, int final_x, int final_y)
     {
-        return (boardArray[final_x][final_y] == null) ||
+        return ((boardArray[final_x][final_y] == null) ||
                 (boardArray[final_x][final_y] != null &&
-                        boardArray[final_x][final_y].player.playerColor != piece.player.playerColor);
+                        boardArray[final_x][final_y].player.playerColor != piece.player.playerColor));
     }
 
     protected boolean isCapture(Piece piece,int final_x,int final_y)

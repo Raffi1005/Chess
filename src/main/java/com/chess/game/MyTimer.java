@@ -1,24 +1,15 @@
 package com.chess.game;
 
 import javax.swing.*;
-
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.text.DecimalFormat;
-import java.util.concurrent.*;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 
 public class MyTimer extends JPanel {
 
-    // GUI Components
-    private JPanel panel;
-    private JLabel timeLabel;
-
-    private JPanel buttonPanel;
-    private JButton startButton;
-    private JButton resetButton;
-    private JButton stopButton;
+    private final JLabel timeLabel;
 
     // Properties of Program.
     private byte centiseconds = 0;
@@ -31,7 +22,7 @@ public class MyTimer extends JPanel {
     private DecimalFormat timeFormatter;
     private boolean timerIsRunning = true;
 
-    private ExecutorService executor = Executors.newCachedThreadPool();
+    private ExecutorService executor = Executors.newFixedThreadPool(2);
 
     public MyTimer() {
         setLayout(new BorderLayout());

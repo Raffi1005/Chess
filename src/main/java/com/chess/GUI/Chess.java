@@ -9,10 +9,15 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class Chess {
+    private final ChessBoardGUI gui;
     boolean isRestarted = false;
-    boolean state = false;
 
-    public void gameLoop(ChessBoardGUI gui)
+    public Chess(ChessBoardGUI gui)
+    {
+        this.gui=gui;
+    }
+
+    public void gameLoop()
     {
             if (isRestarted) {
                 gui.resetGrid();
@@ -40,16 +45,17 @@ public class Chess {
                     gui.whiteTimer.start();
                     gui.whiteTimer.pause();
                 }
-                //JOptionPane.showMessageDialog(null, gui.currPlayer.playerColor + ", make your move.");
-                String[] buttons = new String[]{"OK"};
-                int returnValue = JOptionPane.showOptionDialog(null, gui.currPlayer.playerColor + ", make your move.", "TURN",
-                        JOptionPane.DEFAULT_OPTION, 0, null, buttons, buttons[0]);
-                if (returnValue == 0 && gui.currPlayer.playerColor == Color.WHITE) {
+
+                gui.addCurrPlayer();
+
+                if (gui.currPlayer.playerColor == Color.WHITE) {
                     gui.whiteTimer.start();
                 }
-                if (returnValue == 0 && gui.currPlayer.playerColor == Color.BLACK) {
+                if (gui.currPlayer.playerColor == Color.BLACK) {
                     gui.blackTimer.start();
                 }
+
+
 
                 gui.waitForInput();
 
@@ -78,27 +84,29 @@ public class Chess {
             }
 
             String[] buttons = new String[]{"Yes", "No"};
-            int returnValue = JOptionPane.showOptionDialog(null, "CHECKMATE. Play a new game?", "GAME OVER",
+            String winner = "";
+            if(gui.game.blackPlayer.isLoser)
+                winner = gui.game.whitePlayer.playerColor.toString();
+            else
+                winner = gui.game.blackPlayer.playerColor.toString();
+            int returnValue = JOptionPane.showOptionDialog(null, winner + " WON. Play a new game?", "GAME OVER",
                     JOptionPane.DEFAULT_OPTION, 0, null, buttons, buttons[0]);
             if (returnValue == 1)
                 System.exit(0);
             else {
                 isRestarted = true;
-                gameLoop(gui);
+                gameLoop();
             }
     }
 
-    public ChessBoardGUI getChessBoardGUI() {
-        return new ChessBoardGUI();
+    public void setRestarted()
+    {
+        isRestarted=true;
+        gameLoop();
     }
 
-    public void start(ChessBoardGUI gui)
+    public String getCurrPlayer()
     {
-        state = true;
-    }
-
-    public void stop(ChessBoardGUI gui)
-    {
-        state = false;
+        return gui.currPlayer.playerColor.toString();
     }
 }

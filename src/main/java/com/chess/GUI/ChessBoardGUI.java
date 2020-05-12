@@ -1,15 +1,17 @@
 package com.chess.GUI;
-import com.chess.game.*;
-import com.chess.pieces.*;
+
+import com.chess.game.Game;
+import com.chess.game.MyTimer;
+import com.chess.game.Player;
+import com.chess.pieces.Piece;
+
+import javax.imageio.ImageIO;
+import javax.swing.*;
+import javax.swing.border.MatteBorder;
 import java.awt.*;
-import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
-import javax.imageio.ImageIO;
-import javax.swing.*;
-import javax.swing.border.Border;
-import javax.swing.border.MatteBorder;
 
 
 public class ChessBoardGUI extends JPanel {
@@ -27,6 +29,9 @@ public class ChessBoardGUI extends JPanel {
     MyTimer whiteTimer;
     MyTimer blackTimer;
     Chess inst;
+    GridBagConstraints gbcMenu;
+    JLabel turn;
+    JLabel player;
 
     public synchronized void waitForInput()
     {
@@ -54,76 +59,19 @@ public class ChessBoardGUI extends JPanel {
             @Override
             public void run() {
                 createFrame();
-                //createMenu();
-
                 createGame();
-
-               // startGame();
             }
         });
     }
-
-    public void createMenu(){
-        menu = new JPanel();
-        menu.setLayout(new GridBagLayout());
-        menu.setBackground(Color.GRAY);
-        GridBagConstraints gbc = new GridBagConstraints();
-
-
-        gbc.insets = new Insets(20, 20, 0, 0);
-
-        JLabel title = new JLabel("CHESS");
-        title.setFont(new Font("Courier New", Font.ITALIC, 20));
-        title.setForeground(Color.BLUE);
-        gbc.gridx = 0;
-        gbc.gridy = 0;
-        menu.add(title, gbc);
-
-        JButton newGameButton = new JButton("New Game");
-        gbc.gridx = 0;
-        gbc.gridy = 1;
-        menu.add(newGameButton, gbc);
-        newGameButton.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                menu.setVisible(false);
-                startGame();
-            }
-        });
-
-        JButton exit = new JButton("Exit");
-        gbc.gridx = 0;
-        gbc.gridy = 2;
-        menu.add(exit, gbc);
-        exit.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                System.exit(0);
-            }
-        });
-        frame.add(menu);
-        //menu.setVisible(false);
-
-        frame.setVisible(true);
-        frame.setLocationRelativeTo(null);
-    }
-
-
 
     public void startGame()
     {
-        if(this == null)
-        {
-            System.out.println("NULL");
-        }
-        //createGame();
-        inst = new Chess();
+        inst = new Chess(this);
         gamePanel.setVisible(true);
         whiteTimerPanel.setVisible(true);
         blackTimerPanel.setVisible(true);
-        inst.gameLoop(this);
+        menu.setVisible(true);
+        inst.gameLoop();
 
     }
 
@@ -132,7 +80,7 @@ public class ChessBoardGUI extends JPanel {
         createChessBoard();
         createBlackTimer();
         createWhiteTimer();
-        //createButton();
+        createButton();
     }
 
     public void createFrame()
@@ -140,26 +88,86 @@ public class ChessBoardGUI extends JPanel {
         frame = new JFrame("Chess");
         ImageIcon imageIcon = new ImageIcon("E:\\Studia\\Rok 2\\Semestr 4\\JTP\\Chess\\src\\main\\java\\com\\chess\\GUI\\Assets\\BlackRook.png");
         frame.setIconImage(imageIcon.getImage());
+        frame.setBackground(Color.blue);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        frame.setSize(840,840);
+        frame.setSize(900,840);
         frame.setLayout(new BorderLayout());
         frame.setVisible(true);
         frame.setLocationRelativeTo(null);
     }
 
     public void createButton(){
-        JButton button = new JButton("Start");
-        button.setPreferredSize(new Dimension(180, 50));
-        button.addActionListener(new ActionListener() {
+        menu = new JPanel();
+        menu.setLayout(new GridBagLayout());
+        gbcMenu = new GridBagConstraints();
+        gbcMenu.insets = new Insets(5,0,5,20);
+        JButton reset = new JButton("Reset");
+        reset.setPreferredSize(new Dimension(70,30));
+        gbcMenu.gridx=0;
+        gbcMenu.gridy=0;
+        reset.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent event) {
-                inst.start(ChessBoardGUI.this);
+                String[] buttons = { "Keep Playing", "RESET" };
+                int returnValue = JOptionPane.showOptionDialog(null, "Do you want to RESET?", "EXIT",
+                        JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE, null, buttons, buttons[0]);
+                System.out.println(returnValue);
+                if(returnValue == 0)
+                {
+
+                }
+                if(returnValue == 1)
+                {
+                    inst.setRestarted();
+                    //inst.gameLoop(getChessBoardGUI());
+                }
+
             }
         });
-        button.setEnabled(true);
-        frame.add(button,BorderLayout.EAST);
-        button.setVisible(false);
+        menu.add(reset,gbcMenu);
 
+
+        JButton exit = new JButton("EXIT");
+        exit.setPreferredSize(new Dimension(70,30));
+        gbcMenu.gridx=0;
+        gbcMenu.gridy=1;
+        exit.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent event) {
+                String[] buttons = { "Keep Playing", "EXIT" };
+                int returnValue = JOptionPane.showOptionDialog(null, "Do you want to EXIT?", "EXIT",
+                        JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE, null, buttons, buttons[0]);
+                System.out.println(returnValue);
+                if(returnValue == 0)
+                {
+                }
+                if(returnValue == 1)
+                {
+                    System.exit(0);
+                }
+            }
+        });
+        menu.add(exit,gbcMenu);
+            player = new JLabel();
+            gbcMenu.gridx=0;
+            gbcMenu.gridy=2;
+            menu.add(player,gbcMenu);
+        turn = new JLabel();
+        gbcMenu.gridx=0;
+        gbcMenu.gridy=3;
+        menu.add(turn,gbcMenu);
+
+
+        reset.setEnabled(true);
+        exit.setEnabled(true);
+        frame.add(menu,BorderLayout.EAST);
+        menu.setVisible(false);
+    }
+
+    public void addCurrPlayer()
+    {
+        player.setText("Current player: " + inst.getCurrPlayer());
+        turn.setText("Turn " + this.game.turn);
     }
 
 
@@ -206,6 +214,7 @@ public class ChessBoardGUI extends JPanel {
     }
 
 
+
     public void resetGrid() {
         frame.setVisible(false);
         createFrame();
@@ -223,8 +232,8 @@ public class ChessBoardGUI extends JPanel {
 
             if(selection == null || (selectedPiece != null && selection.player != selectedPiece.player && selectedPiece.player == currPlayer))
             {
-                if(selectedPiece == null)
-                    return;
+                if(selectedPiece == null) {
+                }
 
                 else
                 {
@@ -292,22 +301,9 @@ public class ChessBoardGUI extends JPanel {
                         gbc.gridx = col;
                         gbc.gridy = row;
 
-                        Border border = null;
-                        if (row < 8) {
-                            if (col < 8) {
-                                new MatteBorder(1, 1, 0, 0, Color.GRAY);
-                            } else {
-                                new MatteBorder(1, 1, 0, 1, Color.GRAY);
-                            }
-                        } else {
-                            if (col < 8) {
-                                new MatteBorder(1, 1, 1, 0, Color.GRAY);
-                            } else {
-                                new MatteBorder(1, 1, 1, 1, Color.GRAY);
-                            }
-                        }
+                        new MatteBorder(1, 1, 0, 0, Color.GRAY);
                         JButton button = new JButton();
-                        if (row == 1 && col < 8) {
+                        if (row == 1) {
                             Image blackPawn = null;
                             try {
                                 blackPawn = ImageIO.read(getClass().getResource("Assets/BlackPawn.png"));

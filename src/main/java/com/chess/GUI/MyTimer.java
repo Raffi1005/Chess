@@ -1,4 +1,4 @@
-package com.chess.game;
+package com.chess.GUI;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,7 +11,6 @@ public class MyTimer extends JPanel {
 
     private final JLabel timeLabel;
 
-    // Properties of Program.
     private byte centiseconds = 0;
     private byte seconds = 0;
     private short minutes = 10;
@@ -23,6 +22,7 @@ public class MyTimer extends JPanel {
     private boolean timerIsRunning = true;
 
     private ExecutorService executor = Executors.newFixedThreadPool(2);
+
 
     public MyTimer() {
         setLayout(new BorderLayout());
@@ -97,6 +97,10 @@ public class MyTimer extends JPanel {
         timerIsRunning=false;
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean isDone()
     {
         return minutes == 0 && seconds == 0 && centiseconds == 0;

@@ -5,7 +5,6 @@ import javax.swing.*;
 public class Menu {
     public static void main(String[] args) {
 
-        //Chess inst = new Chess();
         ChessBoardGUI gui = new ChessBoardGUI();
         String[] buttons = { "Start", "Exit" };
         int returnValue = JOptionPane.showOptionDialog(null, "What to do", "MENU",

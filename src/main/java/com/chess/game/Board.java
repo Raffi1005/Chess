@@ -12,6 +12,13 @@ public class Board {
     public Piece[][] boardArray;
     protected Vector<Piece> whitePieces = new Vector<Piece>(16);
     protected Vector<Piece> blackPieces = new Vector<Piece>(16);
+
+    /**
+     *
+     * @param width
+     * @param height
+     * @param game
+     */
     Board(int width,int height,Game game)
     {
         this.width=width;
@@ -20,6 +27,9 @@ public class Board {
         this.game=game;
     }
 
+    /**
+     * Setting up pieces in game
+     */
     public void setPieces() {
         setWhitePlayerPieces();
         setBlackPlayerPieces();
@@ -37,45 +47,49 @@ public class Board {
     }
 
     private void setBlackPlayerPieces() {
-        Piece[][] board = this.boardArray;
         for(int i=0;i<8;i++) {
-            Piece pawn = new Pawn(i, 1, this.game.blackPlayer);
+            new Pawn(i, 1, this.game.blackPlayer);
         }
 
-        Piece blackLeftRook = new Rook(0,0,this.game.blackPlayer);
-        Piece blackRightRook = new Rook(7,0,this.game.blackPlayer);
+        new Rook(0,0,this.game.blackPlayer);
+        new Rook(7,0,this.game.blackPlayer);
 
-        Piece blackLeftKnight = new Knight(1,0,this.game.blackPlayer);
-        Piece blackRightKnight = new Knight(6,0,this.game.blackPlayer);
+        new Knight(1,0,this.game.blackPlayer);
+        new Knight(6,0,this.game.blackPlayer);
 
-        Piece blackLeftBishop = new Bishop(2,0,this.game.blackPlayer);
-        Piece blackRightBishop = new Bishop(5,0,this.game.blackPlayer);
+        new Bishop(2,0,this.game.blackPlayer);
+        new Bishop(5,0,this.game.blackPlayer);
 
-        Piece blackQueen = new Queen(3,0,this.game.blackPlayer);
-        Piece blackKing = new King(4,0,this.game.blackPlayer);
+        new Queen(3,0,this.game.blackPlayer);
+        new King(4,0,this.game.blackPlayer);
 
     }
 
     private void setWhitePlayerPieces() {
-        Piece[][] board = this.boardArray;
         for(int i=0;i<8;i++) {
-            Piece pawn = new Pawn(i, 6, this.game.whitePlayer);
+            new Pawn(i, 6, this.game.whitePlayer);
         }
 
-        Piece whiteLeftRook = new Rook(0,7,this.game.whitePlayer);
-        Piece whiteRightRook = new Rook(7,7,this.game.whitePlayer);
+        new Rook(0,7,this.game.whitePlayer);
+        new Rook(7,7,this.game.whitePlayer);
 
-        Piece whiteLeftKnight = new Knight(1,7,this.game.whitePlayer);
-        Piece whiteRightKnight = new Knight(6,7,this.game.whitePlayer);
+        new Knight(1,7,this.game.whitePlayer);
+        new Knight(6,7,this.game.whitePlayer);
 
-        Piece whiteLeftBishop = new Bishop(2,7,this.game.whitePlayer);
-        Piece whiteRightBishop = new Bishop(5,7,this.game.whitePlayer);
+        new Bishop(2,7,this.game.whitePlayer);
+        new Bishop(5,7,this.game.whitePlayer);
 
-        Piece whiteQueen = new Queen(3,7,this.game.whitePlayer);
-        Piece whiteKing = new King(4,7,this.game.whitePlayer);
+        new Queen(3,7,this.game.whitePlayer);
+        new King(4,7,this.game.whitePlayer);
 
     }
 
+    /**
+     * Checking if piece can be moved
+     * @param piece
+     * @param final_x
+     * @param final_y
+     */
     public void movePiece(Piece piece,int final_x,int final_y)
     {
 
@@ -97,6 +111,12 @@ public class Board {
 
     }
 
+    /**
+     *
+     * @param piece
+     * @param final_x
+     * @param final_y
+     */
     private void setNewPieceLocation(Piece piece, int final_x, int final_y) {
         int start_x=piece.x;
         int start_y=piece.y;
@@ -108,26 +128,38 @@ public class Board {
         boardArray[start_x][start_y]=null;
     }
 
+    /**
+     *
+     * @param piece
+     * @param final_x
+     * @param final_y
+     * @return
+     */
     public boolean isValidMove(Piece piece,int final_x,int final_y)
     {
         int[][] path = piece.drawPath(piece.x,piece.y,final_x,final_y);
 
-        if(isWithinBounds(final_x,final_y)&& (isValidLeap(piece, path))&& (isNotOrigin(piece, final_x, final_y))
-                && (isValidEndPoint(piece, final_x, final_y)))
-        {
-            return true;
-        }
-
-        return false;
-
-
+        return isWithinBounds(final_x, final_y) && (isValidLeap(piece, path)) && (isNotOrigin(piece, final_x, final_y))
+                && (isValidEndPoint(piece, final_x, final_y));
     }
 
+    /**
+     *
+     * @param final_x
+     * @param final_y
+     * @return
+     */
     protected boolean isWithinBounds(int final_x,int final_y)
     {
         return (final_x <width && final_x >= 0 && final_y >= 0 && final_y < width);
     }
 
+    /**
+     *
+     * @param piece
+     * @param movePath
+     * @return
+     */
     protected boolean isValidLeap(Piece piece,int[][] movePath)
     {
         if(piece.getType()==Type.KNIGHT)
@@ -146,11 +178,25 @@ public class Board {
         return true;
     }
 
+    /**
+     *
+     * @param piece
+     * @param final_x
+     * @param final_y
+     * @return
+     */
     protected boolean isNotOrigin(Piece piece,int final_x,int final_y)
     {
         return (piece.x != final_x || piece.y != final_y);
     }
 
+    /**
+     *
+     * @param piece
+     * @param final_x
+     * @param final_y
+     * @return
+     */
     protected boolean isValidEndPoint(Piece piece, int final_x, int final_y)
     {
         return ((boardArray[final_x][final_y] == null) ||
@@ -158,6 +204,13 @@ public class Board {
                         boardArray[final_x][final_y].player.playerColor != piece.player.playerColor));
     }
 
+    /**
+     *
+     * @param piece
+     * @param final_x
+     * @param final_y
+     * @return
+     */
     protected boolean isCapture(Piece piece,int final_x,int final_y)
     {
         if(boardArray[final_x][final_y] != null &&

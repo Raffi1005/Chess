@@ -4,6 +4,13 @@ import com.chess.game.Player;
 
 public class Bishop extends Piece {
     Type type;
+
+    /**
+     *
+     * @param x
+     * @param y
+     * @param player
+     */
     public Bishop(int x, int y, Player player) {
         super(x, y, player);
         this.type=Type.BISHOP;

@@ -2,16 +2,17 @@ package com.chess.GUI;
 
 import com.chess.game.Color;
 import com.chess.game.Game;
-import com.chess.game.MyTimer;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class Chess {
     private final ChessBoardGUI gui;
     boolean isRestarted = false;
 
+    /**
+     *
+     * @param gui
+     */
     public Chess(ChessBoardGUI gui)
     {
         this.gui=gui;
@@ -105,6 +106,10 @@ public class Chess {
         gameLoop();
     }
 
+    /**
+     *
+     * @return
+     */
     public String getCurrPlayer()
     {
         return gui.currPlayer.playerColor.toString();

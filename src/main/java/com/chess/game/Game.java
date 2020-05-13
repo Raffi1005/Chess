@@ -9,19 +9,22 @@ public class Game {
     final static int standardHeight=8,standardWidth=8;
     public boolean invalid=false,capture=false;
 
-    //Starts game
+    /**
+     * Starting game
+     */
     public Game()
     {
         StartGame();
     }
-    //Creating board,pieces and players
+
+
     private void StartGame() {
         gameBoard =new Board(standardHeight,standardWidth,this);
         setPlayers();
         gameBoard.setPieces();
         turn=1;
     }
-    //Creating players
+
     private void setPlayers() {
         this.whitePlayer=new Player(Color.WHITE,true);
         this.blackPlayer=new Player(Color.BLACK,true);
@@ -29,7 +32,8 @@ public class Game {
         whitePlayer.myGame=this;
         blackPlayer.myGame=this;
     }
-    //Choposing first player
+
+
     private void isFirst() {
         Random rand = new Random();
         int randomNum1 = rand.nextInt(2) + 1;

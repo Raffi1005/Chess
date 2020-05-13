@@ -12,11 +12,21 @@ public class Player {
     public int score = 0;
     public boolean isTurn = false;
 
+    /**
+     *
+     * @param color
+     * @param goesFirst
+     */
     public Player(Color color,boolean goesFirst) {
         this.playerColor=color;
         this.goesFirst=goesFirst;
     }
 
+    /**
+     *
+     * @param playerColor
+     * @return
+     */
     public Vector<Piece> getPlayerPieces(Color playerColor)
     {
         Vector<Piece> allyPieces;
@@ -29,6 +39,11 @@ public class Player {
         return allyPieces;
     }
 
+    /**
+     *
+     * @param playerColor
+     * @return
+     */
     public Vector<Piece> getEnemyPieces(Color playerColor)
     {
         Vector<Piece> enemyPieces;

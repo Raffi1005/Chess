@@ -1,7 +1,6 @@
 package com.chess.GUI;
 
 import com.chess.game.Game;
-import com.chess.game.MyTimer;
 import com.chess.game.Player;
 import com.chess.pieces.Piece;
 
@@ -43,6 +42,7 @@ public class ChessBoardGUI extends JPanel {
         }
     }
 
+
     public synchronized  void notifyInput()
     {
         endTurn = true;
@@ -50,7 +50,7 @@ public class ChessBoardGUI extends JPanel {
     }
 
     /**
-     * Initializes the GUI.
+     * Initialize GUI
      */
     public ChessBoardGUI() {
         EventQueue.invokeLater(new Runnable() {
@@ -223,6 +223,7 @@ public class ChessBoardGUI extends JPanel {
     }
 
     class MyActionListener implements ActionListener{
+
 
         @Override
         public void actionPerformed(ActionEvent e){

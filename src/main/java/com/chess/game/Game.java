@@ -5,7 +5,9 @@ import java.util.Random;
 public class Game {
     public Board gameBoard;
     public Player whitePlayer, blackPlayer;
-    public int turn;
+    public static int turn;
+    public static int whiteTurn;
+    public static int blackTurn;
     final static int standardHeight=8,standardWidth=8;
     public boolean invalid=false,capture=false;
 
@@ -22,7 +24,7 @@ public class Game {
         gameBoard =new Board(standardHeight,standardWidth,this);
         setPlayers();
         gameBoard.setPieces();
-        turn=1;
+        turn=0;
     }
 
     private void setPlayers() {

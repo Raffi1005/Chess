@@ -10,8 +10,8 @@ public class Board {
     public int width,height;
     public Game game;
     public Piece[][] boardArray;
-    protected Vector<Piece> whitePieces = new Vector<Piece>(16);
-    protected Vector<Piece> blackPieces = new Vector<Piece>(16);
+    protected Vector<Piece> whitePieces = new Vector<>(16);
+    protected Vector<Piece> blackPieces = new Vector<>(16);
 
     /**
      *

@@ -1,11 +1,14 @@
 package com.chess.GUI;
 
+import com.chess.game.BlackTurns;
 import com.chess.game.Color;
 import com.chess.game.Game;
+import com.chess.game.WhiteTurns;
 
 import javax.swing.*;
+import java.util.concurrent.Semaphore;
 
-public class Chess {
+public class Chess{
     private final ChessBoardGUI gui;
     boolean isRestarted = false;
 
@@ -18,46 +21,65 @@ public class Chess {
         this.gui=gui;
     }
 
-    public void gameLoop()
-    {
+    public void gameLoop() {
             if (isRestarted) {
                 gui.resetGrid();
             }
+            isRestarted=false;
             gui.game = new Game();
+        Game.blackTurn=-1;
+        Game.whiteTurn=-1;
+        Game.turn=-2;
 
-            if (gui.game.blackPlayer.goesFirst && gui.game.turn % 2 != 0) {
+        Semaphore whiteSem =new Semaphore(1);
+        Semaphore blackSem =new Semaphore(1);
+        WhiteTurns whiteTurns = new WhiteTurns(whiteSem,blackSem);
+        BlackTurns blackTurns = new BlackTurns(blackSem,whiteSem);
+
+        Thread whiteTurn = new Thread(whiteTurns);
+        Thread blackTurn = new Thread(blackTurns);
+        whiteTurn.start();
+        blackTurn.start();
+
+            if (gui.game.blackPlayer.goesFirst && Game.turn % 2 != 0) {
                 gui.currPlayer = gui.game.blackPlayer;
+                whiteSem.release();
                 gui.currPlayer.isTurn = true;
-            } else if (gui.game.whitePlayer.goesFirst && gui.game.turn % 2 == 0) {
+            } else if (gui.game.whitePlayer.goesFirst && Game.turn % 2 == 0) {
                 gui.currPlayer = gui.game.blackPlayer;
+                whiteSem.release();
                 gui.currPlayer.isTurn = true;
             } else {
                 gui.currPlayer = gui.game.whitePlayer;
+                blackSem.release();
                 gui.currPlayer.isTurn = true;
             }
+        gui.blackTimer.start();
+        gui.blackTimer.pause();
+        gui.whiteTimer.start();
+        gui.whiteTimer.pause();
+
 
 
             JOptionPane.showMessageDialog(null, gui.currPlayer.playerColor + " goes first!");
 
+
             while (!gui.game.blackPlayer.isLoser && !gui.game.whitePlayer.isLoser) {
-                if (gui.game.turn == 1) {
-                    gui.blackTimer.start();
-                    gui.blackTimer.pause();
-                    gui.whiteTimer.start();
-                    gui.whiteTimer.pause();
-                }
 
                 gui.addCurrPlayer();
 
                 if (gui.currPlayer.playerColor == Color.WHITE) {
-                    gui.whiteTimer.start();
+
                 }
                 if (gui.currPlayer.playerColor == Color.BLACK) {
-                    gui.blackTimer.start();
+
+
                 }
 
-
-
+                if(isRestarted)
+                {
+                    gameLoop();
+                }
                 gui.waitForInput();
 
                 if (gui.game.invalid) {
@@ -67,31 +89,35 @@ public class Chess {
                     gui.currPlayer.isTurn = false;
                     if (gui.currPlayer == gui.game.blackPlayer) {
                         gui.blackTimer.pause();
+                        gui.whiteTimer.start();
+                        blackSem.release();
                         gui.currPlayer = gui.game.whitePlayer;
                     } else {
                         gui.whiteTimer.pause();
+                        gui.blackTimer.start();
+                        whiteSem.release();
                         gui.currPlayer = gui.game.blackPlayer;
                     }
                     gui.endTurn = false;
-
-                    gui.game.turn++;
-                    System.out.println(gui.game.turn);
+                   // blackSem.release();
+                    //whiteSem.release();
                 }
 
                 if (gui.whiteTimer.isDone())
                     gui.game.whitePlayer.isLoser = true;
                 if (gui.blackTimer.isDone())
                     gui.game.blackPlayer.isLoser = true;
+
             }
 
             String[] buttons = new String[]{"Yes", "No"};
-            String winner = "";
+            String winner;
             if(gui.game.blackPlayer.isLoser)
                 winner = gui.game.whitePlayer.playerColor.toString();
             else
                 winner = gui.game.blackPlayer.playerColor.toString();
             int returnValue = JOptionPane.showOptionDialog(null, winner + " WON. Play a new game?", "GAME OVER",
-                    JOptionPane.DEFAULT_OPTION, 0, null, buttons, buttons[0]);
+                    JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE, null, buttons, buttons[0]);
             if (returnValue == 1)
                 System.exit(0);
             else {
@@ -103,7 +129,6 @@ public class Chess {
     public void setRestarted()
     {
         isRestarted=true;
-        gameLoop();
     }
 
     /**

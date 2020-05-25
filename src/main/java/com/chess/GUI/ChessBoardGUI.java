@@ -31,6 +31,8 @@ public class ChessBoardGUI extends JPanel {
     GridBagConstraints gbcMenu;
     JLabel turn;
     JLabel player;
+    private JLabel whiteTurn;
+    private JLabel blackTurn;
 
     public synchronized void waitForInput()
     {
@@ -43,7 +45,7 @@ public class ChessBoardGUI extends JPanel {
     }
 
 
-    public synchronized  void notifyInput()
+    public synchronized void notifyInput()
     {
         endTurn = true;
         notifyAll();
@@ -94,6 +96,7 @@ public class ChessBoardGUI extends JPanel {
         frame.setLayout(new BorderLayout());
         frame.setVisible(true);
         frame.setLocationRelativeTo(null);
+        frame.setResizable(false);
     }
 
     public void createButton(){
@@ -119,7 +122,7 @@ public class ChessBoardGUI extends JPanel {
                 if(returnValue == 1)
                 {
                     inst.setRestarted();
-                    //inst.gameLoop(getChessBoardGUI());
+                    notifyInput();
                 }
 
             }
@@ -167,7 +170,9 @@ public class ChessBoardGUI extends JPanel {
     public void addCurrPlayer()
     {
         player.setText("Current player: " + inst.getCurrPlayer());
-        turn.setText("Turn " + this.game.turn);
+        turn.setText("Turn " + Game.turn);
+        whiteTurn.setText("White moves " + Game.whiteTurn);
+        blackTurn.setText("Black moves " + Game.blackTurn);
     }
 
 
@@ -192,6 +197,10 @@ public class ChessBoardGUI extends JPanel {
         gbc.gridx=0;
         gbc.gridy=0;
         blackTimerPanel.add(blackTimer,gbc);
+        blackTurn = new JLabel();
+        gbc.gridx=1;
+        gbc.gridy=0;
+        blackTimerPanel.add(blackTurn,gbc);
         frame.add(blackTimerPanel,BorderLayout.NORTH);
         blackTimerPanel.setVisible(false);
     }
@@ -209,6 +218,10 @@ public class ChessBoardGUI extends JPanel {
         gbc.gridx=0;
         gbc.gridy=0;
         whiteTimerPanel.add(whiteTimer,gbc);
+        whiteTurn = new JLabel();
+        gbc.gridx=1;
+        gbc.gridy=0;
+        whiteTimerPanel.add(whiteTurn,gbc);
         frame.add(whiteTimerPanel,BorderLayout.SOUTH);
         whiteTimerPanel.setVisible(false);
     }

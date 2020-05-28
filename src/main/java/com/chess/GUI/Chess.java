@@ -1,9 +1,6 @@
 package com.chess.GUI;
 
-import com.chess.game.BlackTurns;
-import com.chess.game.Color;
-import com.chess.game.Game;
-import com.chess.game.WhiteTurns;
+import com.chess.game.*;
 
 import javax.swing.*;
 import java.util.concurrent.Semaphore;
@@ -27,32 +24,28 @@ public class Chess{
             }
             isRestarted=false;
             gui.game = new Game();
-        Game.blackTurn=-1;
-        Game.whiteTurn=-1;
-        Game.turn=-2;
 
-        Semaphore whiteSem =new Semaphore(1);
-        Semaphore blackSem =new Semaphore(1);
-        WhiteTurns whiteTurns = new WhiteTurns(whiteSem,blackSem);
-        BlackTurns blackTurns = new BlackTurns(blackSem,whiteSem);
-
-        Thread whiteTurn = new Thread(whiteTurns);
-        Thread blackTurn = new Thread(blackTurns);
-        whiteTurn.start();
-        blackTurn.start();
+        Turns turns = new Turns();
+        Thread blackTurns = new BlackTurns(turns);
+        Thread whiteTurns = new WhiteTurns(turns);
+        blackTurns.start();
+        whiteTurns.start();
+        Game.whiteTurn=0;
+        Game.blackTurn=0;
+        Game.turn=0;
 
             if (gui.game.blackPlayer.goesFirst && Game.turn % 2 != 0) {
                 gui.currPlayer = gui.game.blackPlayer;
-                whiteSem.release();
                 gui.currPlayer.isTurn = true;
+                turns.notifyBlack();
             } else if (gui.game.whitePlayer.goesFirst && Game.turn % 2 == 0) {
                 gui.currPlayer = gui.game.blackPlayer;
-                whiteSem.release();
                 gui.currPlayer.isTurn = true;
+                turns.notifyBlack();
             } else {
                 gui.currPlayer = gui.game.whitePlayer;
-                blackSem.release();
                 gui.currPlayer.isTurn = true;
+                turns.notifyWhite();
             }
         gui.blackTimer.start();
         gui.blackTimer.pause();
@@ -90,25 +83,27 @@ public class Chess{
                     if (gui.currPlayer == gui.game.blackPlayer) {
                         gui.blackTimer.pause();
                         gui.whiteTimer.start();
-                        blackSem.release();
+                        turns.notifyWhite();
                         gui.currPlayer = gui.game.whitePlayer;
                     } else {
                         gui.whiteTimer.pause();
                         gui.blackTimer.start();
-                        whiteSem.release();
+                        turns.notifyBlack();
                         gui.currPlayer = gui.game.blackPlayer;
                     }
                     gui.endTurn = false;
-                   // blackSem.release();
-                    //whiteSem.release();
                 }
 
                 if (gui.whiteTimer.isDone())
                     gui.game.whitePlayer.isLoser = true;
+                    gui.notifyInput();
                 if (gui.blackTimer.isDone())
                     gui.game.blackPlayer.isLoser = true;
+                    gui.notifyInput();
 
             }
+            gui.blackTimer.pause();
+            gui.whiteTimer.pause();
 
             String[] buttons = new String[]{"Yes", "No"};
             String winner;

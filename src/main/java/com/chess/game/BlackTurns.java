@@ -1,31 +1,23 @@
 package com.chess.game;
 
-import java.util.concurrent.Semaphore;
+public class BlackTurns extends Thread {
 
-public class BlackTurns implements Runnable {
-    private Semaphore blackSem;
-    private Semaphore whiteSem;
+    private Turns turns;
 
-    public BlackTurns(Semaphore blackSem, Semaphore whiteSem) {
-        this.blackSem = blackSem;
-        this.whiteSem = whiteSem;
+    public BlackTurns(Turns turns) {
+        this.turns = turns;
     }
 
     @Override
-    public void run()
-    {
-        while(true) {
+    public void run() {
+        while (true) {
             try {
-                whiteSem.acquire();
-                Thread.sleep(100);
+                turns.add();
+                sleep(1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-
-            Game.turn++;
-            Game.blackTurn++;
-            //Game.blackTurn++;
-            //blackSem.release();
         }
     }
+
 }

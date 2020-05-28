@@ -170,7 +170,7 @@ public class ChessBoardGUI extends JPanel {
     public void addCurrPlayer()
     {
         player.setText("Current player: " + inst.getCurrPlayer());
-        turn.setText("Turn " + Game.turn);
+        turn.setText("Total moves " + Game.turn);
         whiteTurn.setText("White moves " + Game.whiteTurn);
         blackTurn.setText("Black moves " + Game.blackTurn);
     }

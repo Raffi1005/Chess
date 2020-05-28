@@ -8,7 +8,7 @@ import java.util.Vector;
 
 public class Board {
     public int width,height;
-    public Game game;
+    private Game game;
     public Piece[][] boardArray;
     protected Vector<Piece> whitePieces = new Vector<>(16);
     protected Vector<Piece> blackPieces = new Vector<>(16);

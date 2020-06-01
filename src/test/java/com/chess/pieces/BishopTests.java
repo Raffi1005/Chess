@@ -11,81 +11,73 @@ import org.junit.runners.BlockJUnit4ClassRunner;
 public class BishopTests {
 
     @Test
-    public void moveDiagonallyDownRight()
-    {
+    public void moveDiagonallyDownRight() {
         Game game = new Game();
-        Piece bishop = new Bishop(3,3,game.whitePlayer);
-        game.gameBoard.movePiece(bishop,4,4);
-        Assert.assertEquals(bishop,game.gameBoard.boardArray[4][4]);
-        Assert.assertNotEquals(bishop,game.gameBoard.boardArray[3][3]);
+        Piece bishop = new Bishop(3, 3, game.whitePlayer);
+        game.gameBoard.movePiece(bishop, 4, 4);
+        Assert.assertEquals(bishop, game.gameBoard.boardArray[4][4]);
+        Assert.assertNotEquals(bishop, game.gameBoard.boardArray[3][3]);
     }
 
     @Test
-    public void moveDiagonallyDownLeft()
-    {
+    public void moveDiagonallyDownLeft() {
         Game game = new Game();
-        Piece bishop = new Bishop(3,3,game.whitePlayer);
-        game.gameBoard.movePiece(bishop,2,4);
-        Assert.assertEquals(bishop,game.gameBoard.boardArray[2][4]);
-        Assert.assertNotEquals(bishop,game.gameBoard.boardArray[3][3]);
+        Piece bishop = new Bishop(3, 3, game.whitePlayer);
+        game.gameBoard.movePiece(bishop, 2, 4);
+        Assert.assertEquals(bishop, game.gameBoard.boardArray[2][4]);
+        Assert.assertNotEquals(bishop, game.gameBoard.boardArray[3][3]);
     }
 
     @Test
-    public void moveDiagonallyUpRight()
-    {
+    public void moveDiagonallyUpRight() {
         Game game = new Game();
-        Piece bishop = new Bishop(3,3,game.whitePlayer);
-        game.gameBoard.movePiece(bishop,4,2);
-        Assert.assertEquals(bishop,game.gameBoard.boardArray[4][2]);
-        Assert.assertNotEquals(bishop,game.gameBoard.boardArray[3][3]);
+        Piece bishop = new Bishop(3, 3, game.whitePlayer);
+        game.gameBoard.movePiece(bishop, 4, 2);
+        Assert.assertEquals(bishop, game.gameBoard.boardArray[4][2]);
+        Assert.assertNotEquals(bishop, game.gameBoard.boardArray[3][3]);
     }
 
     @Test
-    public void moveDiagonallyUpLeft()
-    {
+    public void moveDiagonallyUpLeft() {
         Game game = new Game();
-        Piece bishop = new Bishop(3,3,game.whitePlayer);
-        game.gameBoard.movePiece(bishop,2,2);
-        Assert.assertEquals(bishop,game.gameBoard.boardArray[2][2]);
-        Assert.assertNotEquals(bishop,game.gameBoard.boardArray[3][3]);
-    }
-    @Test
-    public void moveVerticallyUp()
-    {
-        Game game = new Game();
-        Piece bishop = new Bishop(3,3,game.whitePlayer);
-        game.gameBoard.movePiece(bishop,3,2);
+        Piece bishop = new Bishop(3, 3, game.whitePlayer);
+        game.gameBoard.movePiece(bishop, 2, 2);
+        Assert.assertEquals(bishop, game.gameBoard.boardArray[2][2]);
+        Assert.assertNotEquals(bishop, game.gameBoard.boardArray[3][3]);
     }
 
     @Test
-    public void moveVerticallyDown()
-    {
+    public void moveVerticallyUp() {
         Game game = new Game();
-        Piece bishop = new Bishop(3,3,game.whitePlayer);
-        game.gameBoard.movePiece(bishop,3,4);
+        Piece bishop = new Bishop(3, 3, game.whitePlayer);
+        game.gameBoard.movePiece(bishop, 3, 2);
     }
 
     @Test
-    public void moveHorizontallyLeft()
-    {
+    public void moveVerticallyDown() {
         Game game = new Game();
-        Piece bishop = new Bishop(3,3,game.whitePlayer);
-        game.gameBoard.movePiece(bishop,2,3);
+        Piece bishop = new Bishop(3, 3, game.whitePlayer);
+        game.gameBoard.movePiece(bishop, 3, 4);
     }
 
     @Test
-    public void moveHorizontallyRight()
-    {
+    public void moveHorizontallyLeft() {
         Game game = new Game();
-        Piece bishop = new Bishop(3,3,game.whitePlayer);
-        game.gameBoard.movePiece(bishop,4,3);
+        Piece bishop = new Bishop(3, 3, game.whitePlayer);
+        game.gameBoard.movePiece(bishop, 2, 3);
     }
 
     @Test
-    public void canCapture()
-    {
+    public void moveHorizontallyRight() {
         Game game = new Game();
-        Piece bishop = new Bishop(2,2,game.whitePlayer);
+        Piece bishop = new Bishop(3, 3, game.whitePlayer);
+        game.gameBoard.movePiece(bishop, 4, 3);
+    }
+
+    @Test
+    public void canCapture() {
+        Game game = new Game();
+        Piece bishop = new Bishop(2, 2, game.whitePlayer);
         Piece enemyPawn = new Pawn(3, 3, game.blackPlayer);
 
         game.gameBoard.movePiece(bishop, 3, 3);

@@ -13,23 +13,25 @@ public class MyTimer extends JPanel {
 
     private byte centiseconds = 0;
     private byte seconds = 0;
-    private short minutes = 10;
+    private short[] minutes = {15,10,5};
 
     private Runnable timeTask;
     private Runnable incrementTimeTask;
     private Runnable setTimeTask;
     private DecimalFormat timeFormatter;
     private boolean timerIsRunning = true;
+    private int times;
 
     private ExecutorService executor = Executors.newFixedThreadPool(2);
 
 
-    public MyTimer() {
+    public MyTimer(int time) {
+        this.times=time;
         setLayout(new BorderLayout());
 
         timeLabel = new JLabel();
         timeLabel.setFont(new Font("Consolas", Font.PLAIN, 13));
-        add(timeLabel,BorderLayout.NORTH);
+        add(timeLabel, BorderLayout.NORTH);
 
         timeFormatter = new DecimalFormat("00");
 
@@ -52,13 +54,13 @@ public class MyTimer extends JPanel {
                 if (centiseconds > 0)
                     centiseconds--;
                 else {
-                    if (seconds == 0 && minutes == 0)
+                    if (seconds == 0 && minutes[times] == 0)
                         timerIsRunning = false;
                     else if (seconds > 0) {
                         seconds--;
                         centiseconds = 99;
-                    } else if (minutes > 0) {
-                        minutes--;
+                    } else if (minutes[times] > 0) {
+                        minutes[times]--;
                         seconds = 59;
                         centiseconds = 99;
                     }
@@ -70,13 +72,13 @@ public class MyTimer extends JPanel {
 
         setTimeTask = new Runnable() {
             public void run() {
-                timeLabel.setText(timeFormatter.format(minutes) + ":"
+                timeLabel.setText(timeFormatter.format(minutes[times]) + ":"
                         + timeFormatter.format(seconds) + "."
                         + timeFormatter.format(centiseconds));
             }
         };
 
-        timeLabel.setText(timeFormatter.format(minutes) + ":"
+        timeLabel.setText(timeFormatter.format(minutes[times]) + ":"
                 + timeFormatter.format(seconds) + "."
                 + timeFormatter.format(centiseconds));
 
@@ -84,26 +86,22 @@ public class MyTimer extends JPanel {
     }
 
 
-    public void start()
-    {
+    public void start() {
         if (!timerIsRunning)
             timerIsRunning = true;
 
         executor.execute(timeTask);
     }
 
-    public void pause()
-    {
-        timerIsRunning=false;
+    public void pause() {
+        timerIsRunning = false;
     }
 
     /**
-     *
      * @return
      */
-    public boolean isDone()
-    {
-        return minutes == 0 && seconds == 0 && centiseconds == 0;
+    public boolean isDone() {
+        return minutes[times] == 0 && seconds == 0 && centiseconds == 0;
     }
 }
 

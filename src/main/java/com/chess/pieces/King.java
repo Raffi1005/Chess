@@ -5,9 +5,10 @@ import com.chess.game.Player;
 public class King extends Piece {
 
     Type type;
+
     public King(int x, int y, Player player) {
         super(x, y, player);
-        this.type=Type.KING;
+        this.type = Type.KING;
     }
 
     @Override

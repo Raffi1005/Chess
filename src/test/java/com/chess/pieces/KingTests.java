@@ -8,90 +8,81 @@ import org.junit.Test;
 public class KingTests {
 
     @Test
-    public void moveVerticallyUp()
-    {
+    public void moveVerticallyUp() {
         Game game = new Game();
-        Piece king = new King(3,3,game.whitePlayer);
-        game.gameBoard.movePiece(king,3,2);
-        Assert.assertEquals(king,game.gameBoard.boardArray[3][2]);
-        Assert.assertNotEquals(king,game.gameBoard.boardArray[3][3]);
+        Piece king = new King(3, 3, game.whitePlayer);
+        game.gameBoard.movePiece(king, 3, 2);
+        Assert.assertEquals(king, game.gameBoard.boardArray[3][2]);
+        Assert.assertNotEquals(king, game.gameBoard.boardArray[3][3]);
     }
 
     @Test
-    public void moveVerticallyDown()
-    {
+    public void moveVerticallyDown() {
         Game game = new Game();
-        Piece king = new King(3,3,game.whitePlayer);
-        game.gameBoard.movePiece(king,3,4);
-        Assert.assertEquals(king,game.gameBoard.boardArray[3][4]);
-        Assert.assertNotEquals(king,game.gameBoard.boardArray[3][3]);
+        Piece king = new King(3, 3, game.whitePlayer);
+        game.gameBoard.movePiece(king, 3, 4);
+        Assert.assertEquals(king, game.gameBoard.boardArray[3][4]);
+        Assert.assertNotEquals(king, game.gameBoard.boardArray[3][3]);
     }
 
     @Test
-    public void moveHorizontallyLeft()
-    {
+    public void moveHorizontallyLeft() {
         Game game = new Game();
-        Piece king = new King(3,3,game.whitePlayer);
-        game.gameBoard.movePiece(king,2,3);
-        Assert.assertEquals(king,game.gameBoard.boardArray[2][3]);
-        Assert.assertNotEquals(king,game.gameBoard.boardArray[3][3]);
+        Piece king = new King(3, 3, game.whitePlayer);
+        game.gameBoard.movePiece(king, 2, 3);
+        Assert.assertEquals(king, game.gameBoard.boardArray[2][3]);
+        Assert.assertNotEquals(king, game.gameBoard.boardArray[3][3]);
     }
 
     @Test
-    public void moveHorizontallyRight()
-    {
+    public void moveHorizontallyRight() {
         Game game = new Game();
-        Piece king = new King(3,3,game.whitePlayer);
-        game.gameBoard.movePiece(king,4,3);
-        Assert.assertEquals(king,game.gameBoard.boardArray[4][3]);
-        Assert.assertNotEquals(king,game.gameBoard.boardArray[3][3]);
+        Piece king = new King(3, 3, game.whitePlayer);
+        game.gameBoard.movePiece(king, 4, 3);
+        Assert.assertEquals(king, game.gameBoard.boardArray[4][3]);
+        Assert.assertNotEquals(king, game.gameBoard.boardArray[3][3]);
     }
 
     @Test
-    public void moveDiagonallyDownRight()
-    {
+    public void moveDiagonallyDownRight() {
         Game game = new Game();
-        Piece king = new King(3,3,game.whitePlayer);
-        game.gameBoard.movePiece(king,4,4);
-        Assert.assertEquals(king,game.gameBoard.boardArray[4][4]);
-        Assert.assertNotEquals(king,game.gameBoard.boardArray[3][3]);
+        Piece king = new King(3, 3, game.whitePlayer);
+        game.gameBoard.movePiece(king, 4, 4);
+        Assert.assertEquals(king, game.gameBoard.boardArray[4][4]);
+        Assert.assertNotEquals(king, game.gameBoard.boardArray[3][3]);
     }
 
     @Test
-    public void moveDiagonallyDownLeft()
-    {
+    public void moveDiagonallyDownLeft() {
         Game game = new Game();
-        Piece king = new King(3,3,game.whitePlayer);
-        game.gameBoard.movePiece(king,2,4);
-        Assert.assertEquals(king,game.gameBoard.boardArray[2][4]);
-        Assert.assertNotEquals(king,game.gameBoard.boardArray[3][3]);
+        Piece king = new King(3, 3, game.whitePlayer);
+        game.gameBoard.movePiece(king, 2, 4);
+        Assert.assertEquals(king, game.gameBoard.boardArray[2][4]);
+        Assert.assertNotEquals(king, game.gameBoard.boardArray[3][3]);
     }
 
     @Test
-    public void moveDiagonallyUpRight()
-    {
+    public void moveDiagonallyUpRight() {
         Game game = new Game();
-        Piece king = new King(3,3,game.whitePlayer);
-        game.gameBoard.movePiece(king,4,2);
-        Assert.assertEquals(king,game.gameBoard.boardArray[4][2]);
-        Assert.assertNotEquals(king,game.gameBoard.boardArray[3][3]);
+        Piece king = new King(3, 3, game.whitePlayer);
+        game.gameBoard.movePiece(king, 4, 2);
+        Assert.assertEquals(king, game.gameBoard.boardArray[4][2]);
+        Assert.assertNotEquals(king, game.gameBoard.boardArray[3][3]);
     }
 
     @Test
-    public void moveDiagonallyUpLeft()
-    {
+    public void moveDiagonallyUpLeft() {
         Game game = new Game();
-        Piece king = new King(3,3,game.whitePlayer);
-        game.gameBoard.movePiece(king,2,2);
-        Assert.assertEquals(king,game.gameBoard.boardArray[2][2]);
-        Assert.assertNotEquals(king,game.gameBoard.boardArray[3][3]);
+        Piece king = new King(3, 3, game.whitePlayer);
+        game.gameBoard.movePiece(king, 2, 2);
+        Assert.assertEquals(king, game.gameBoard.boardArray[2][2]);
+        Assert.assertNotEquals(king, game.gameBoard.boardArray[3][3]);
     }
 
     @Test
-    public void canCapture()
-    {
+    public void canCapture() {
         Game game = new Game();
-        Piece king = new King(2,1,game.whitePlayer);
+        Piece king = new King(2, 1, game.whitePlayer);
         Piece enemyPawn = new Pawn(2, 2, game.blackPlayer);
 
         game.gameBoard.movePiece(king, 2, 2);
@@ -99,26 +90,24 @@ public class KingTests {
     }
 
     @Test
-    public void isGameEndingForWhite()
-    {
+    public void isGameEndingForWhite() {
         Game game = new Game();
-        Piece king = new King(2,2,game.whitePlayer);
+        Piece king = new King(2, 2, game.whitePlayer);
         Piece enemyPawn = new Pawn(1, 1, game.blackPlayer);
 
         game.gameBoard.movePiece(enemyPawn, 2, 2);
         Assert.assertEquals(enemyPawn, game.gameBoard.boardArray[2][2]);
-        Assert.assertEquals(true,game.whitePlayer.isLoser);
+        Assert.assertEquals(true, game.whitePlayer.isLoser);
     }
 
     @Test
-    public void isGameEndingForBlack()
-    {
+    public void isGameEndingForBlack() {
         Game game = new Game();
-        Piece king = new King(2,2,game.blackPlayer);
+        Piece king = new King(2, 2, game.blackPlayer);
         Piece enemyPawn = new Pawn(3, 3, game.whitePlayer);
 
         game.gameBoard.movePiece(enemyPawn, 2, 2);
         Assert.assertEquals(enemyPawn, game.gameBoard.boardArray[2][2]);
-        Assert.assertEquals(true,game.blackPlayer.isLoser);
+        Assert.assertEquals(true, game.blackPlayer.isLoser);
     }
 }

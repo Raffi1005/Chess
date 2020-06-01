@@ -1,6 +1,6 @@
 package com.chess.game;
 
-public class WhiteTurns extends Thread{
+public class WhiteTurns extends Thread {
     private Turns turns;
 
     public WhiteTurns(Turns turns) {

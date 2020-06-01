@@ -8,42 +8,38 @@ public class Game {
     public static int turn;
     public static int whiteTurn;
     public static int blackTurn;
-    final static int standardHeight=8,standardWidth=8;
-    public boolean invalid=false,capture=false;
+    final static int standardHeight = 8, standardWidth = 8;
+    public boolean invalid = false, capture = false;
 
     /**
      * Starting game
      */
-    public Game()
-    {
+    public Game() {
         StartGame();
     }
 
 
     private void StartGame() {
-        gameBoard =new Board(standardHeight,standardWidth,this);
+        gameBoard = new Board(this);
         setPlayers();
         gameBoard.setPieces();
-        turn=0;
+        turn = 0;
     }
 
     private void setPlayers() {
-        this.whitePlayer=new Player(Color.WHITE,true);
-        this.blackPlayer=new Player(Color.BLACK,true);
+        this.whitePlayer = new Player(Color.WHITE, true);
+        this.blackPlayer = new Player(Color.BLACK, true);
         isFirst();
-        whitePlayer.myGame=this;
-        blackPlayer.myGame=this;
+        whitePlayer.myGame = this;
+        blackPlayer.myGame = this;
     }
 
 
     private void isFirst() {
         Random rand = new Random();
-        int randomNum1 = rand.nextInt(2) + 1;
-        int randomNum2 = rand.nextInt(2) + 1;
-
-        if(randomNum1 >= randomNum2)
-            whitePlayer.goesFirst = false;
+        if (rand.nextBoolean())
+            whitePlayer.goesFirst = true;
         else
-            blackPlayer.goesFirst = false;
+            blackPlayer.goesFirst = true;
     }
 }

@@ -10,85 +10,76 @@ import org.junit.runners.BlockJUnit4ClassRunner;
 @RunWith(value = BlockJUnit4ClassRunner.class)
 public class RookTests {
 
-    
+
     @Test
-    public void moveVerticallyUp()
-    {
+    public void moveVerticallyUp() {
         Game game = new Game();
-        Piece rook = new Rook(3,3,game.whitePlayer);
-        game.gameBoard.movePiece(rook,3,2);
-        Assert.assertEquals(rook,game.gameBoard.boardArray[3][2]);
-        Assert.assertNotEquals(rook,game.gameBoard.boardArray[3][3]);
+        Piece rook = new Rook(3, 3, game.whitePlayer);
+        game.gameBoard.movePiece(rook, 3, 2);
+        Assert.assertEquals(rook, game.gameBoard.boardArray[3][2]);
+        Assert.assertNotEquals(rook, game.gameBoard.boardArray[3][3]);
     }
 
     @Test
-    public void moveVerticallyDown()
-    {
+    public void moveVerticallyDown() {
         Game game = new Game();
-        Piece rook = new Rook(3,3,game.whitePlayer);
-        game.gameBoard.movePiece(rook,3,4);
-        Assert.assertEquals(rook,game.gameBoard.boardArray[3][4]);
-        Assert.assertNotEquals(rook,game.gameBoard.boardArray[3][3]);
+        Piece rook = new Rook(3, 3, game.whitePlayer);
+        game.gameBoard.movePiece(rook, 3, 4);
+        Assert.assertEquals(rook, game.gameBoard.boardArray[3][4]);
+        Assert.assertNotEquals(rook, game.gameBoard.boardArray[3][3]);
     }
 
     @Test
-    public void moveHorizontallyLeft()
-    {
+    public void moveHorizontallyLeft() {
         Game game = new Game();
-        Piece rook = new Rook(3,3,game.whitePlayer);
-        game.gameBoard.movePiece(rook,2,3);
-        Assert.assertEquals(rook,game.gameBoard.boardArray[2][3]);
-        Assert.assertNotEquals(rook,game.gameBoard.boardArray[3][3]);
+        Piece rook = new Rook(3, 3, game.whitePlayer);
+        game.gameBoard.movePiece(rook, 2, 3);
+        Assert.assertEquals(rook, game.gameBoard.boardArray[2][3]);
+        Assert.assertNotEquals(rook, game.gameBoard.boardArray[3][3]);
     }
 
     @Test
-    public void moveHorizontallyRight()
-    {
+    public void moveHorizontallyRight() {
         Game game = new Game();
-        Piece rook = new Rook(3,3,game.whitePlayer);
-        game.gameBoard.movePiece(rook,4,3);
-        Assert.assertEquals(rook,game.gameBoard.boardArray[4][3]);
-        Assert.assertNotEquals(rook,game.gameBoard.boardArray[3][3]);
+        Piece rook = new Rook(3, 3, game.whitePlayer);
+        game.gameBoard.movePiece(rook, 4, 3);
+        Assert.assertEquals(rook, game.gameBoard.boardArray[4][3]);
+        Assert.assertNotEquals(rook, game.gameBoard.boardArray[3][3]);
     }
 
     @Test
-    public void moveDiagonallyDownRight()
-    {
+    public void moveDiagonallyDownRight() {
         Game game = new Game();
-        Piece rook = new Rook(3,3,game.whitePlayer);
-        game.gameBoard.movePiece(rook,4,4);
+        Piece rook = new Rook(3, 3, game.whitePlayer);
+        game.gameBoard.movePiece(rook, 4, 4);
     }
 
     @Test
-    public void moveDiagonallyDownLeft()
-    {
+    public void moveDiagonallyDownLeft() {
         Game game = new Game();
-        Piece rook = new Rook(3,3,game.whitePlayer);
-        game.gameBoard.movePiece(rook,2,4);
+        Piece rook = new Rook(3, 3, game.whitePlayer);
+        game.gameBoard.movePiece(rook, 2, 4);
     }
 
     @Test
-    public void moveDiagonallyUpRight()
-    {
+    public void moveDiagonallyUpRight() {
         Game game = new Game();
-        Piece rook = new Rook(3,3,game.whitePlayer);
-        game.gameBoard.movePiece(rook,4,2);
+        Piece rook = new Rook(3, 3, game.whitePlayer);
+        game.gameBoard.movePiece(rook, 4, 2);
     }
 
     @Test
-    public void moveDiagonallyUpLeft()
-    {
+    public void moveDiagonallyUpLeft() {
         Game game = new Game();
-        Piece rook = new Rook(3,3,game.whitePlayer);
-        game.gameBoard.movePiece(rook,2,2);
+        Piece rook = new Rook(3, 3, game.whitePlayer);
+        game.gameBoard.movePiece(rook, 2, 2);
     }
 
 
     @Test
-    public void canCapture()
-    {
+    public void canCapture() {
         Game game = new Game();
-        Piece rook = new Rook(2,1,game.whitePlayer);
+        Piece rook = new Rook(2, 1, game.whitePlayer);
         Piece enemyPawn = new Pawn(2, 2, game.blackPlayer);
 
         game.gameBoard.movePiece(rook, 2, 2);

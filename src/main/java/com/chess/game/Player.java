@@ -8,13 +8,12 @@ public class Player {
     public boolean isTurn = false;
 
     /**
-     *
      * @param color
      * @param goesFirst
      */
-    public Player(Color color,boolean goesFirst) {
-        this.playerColor=color;
-        this.goesFirst=goesFirst;
+    public Player(Color color, boolean goesFirst) {
+        this.playerColor = color;
+        this.goesFirst = goesFirst;
     }
 
 }

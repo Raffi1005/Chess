@@ -1,6 +1,7 @@
 package com.chess.game;
 
 import com.chess.exceptions.InvalidMovementException;
+
 import com.chess.pieces.*;
 
 import java.util.Vector;

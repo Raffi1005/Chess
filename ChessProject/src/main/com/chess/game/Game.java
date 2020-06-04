@@ -27,8 +27,8 @@ public class Game {
     }
 
     private void setPlayers() {
-        this.whitePlayer = new Player(Color.WHITE, true);
-        this.blackPlayer = new Player(Color.BLACK, true);
+        this.whitePlayer = new Player(Color.WHITE, false);
+        this.blackPlayer = new Player(Color.BLACK, false);
         isFirst();
         whitePlayer.myGame = this;
         blackPlayer.myGame = this;

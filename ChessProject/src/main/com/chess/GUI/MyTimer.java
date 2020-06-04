@@ -13,16 +13,16 @@ public class MyTimer extends JPanel {
 
     private byte centiseconds = 0;
     private byte seconds = 0;
-    private short[] minutes = {15,10,5};
+    private final short[] minutes = {15,10,5};
 
-    private Runnable timeTask;
-    private Runnable incrementTimeTask;
-    private Runnable setTimeTask;
-    private DecimalFormat timeFormatter;
+    private final Runnable timeTask;
+    private final Runnable incrementTimeTask;
+    private final Runnable setTimeTask;
+    private final DecimalFormat timeFormatter;
     private boolean timerIsRunning = true;
-    private int times;
+    private final int times;
 
-    private ExecutorService executor = Executors.newFixedThreadPool(2);
+    private final ExecutorService executor = Executors.newFixedThreadPool(2);
 
 
     public MyTimer(int time) {
@@ -39,7 +39,6 @@ public class MyTimer extends JPanel {
             public void run() {
                 while (timerIsRunning) {
                     executor.execute(incrementTimeTask);
-
                     try {
                         Thread.sleep(10);
                     } catch (InterruptedException ex) {

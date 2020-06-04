@@ -23,7 +23,7 @@ public class Bishop extends Piece {
     @Override
     public int[][] drawPath(int start_x, int start_y, int final_x, int final_y) {
         int pairs = Math.abs(final_x - start_x);
-        int x_dir = 0, y_dir = 0;
+        int x_dir, y_dir;
         if (final_x - start_x < 0) {
             if (final_y - start_y < 0) {
                 x_dir = -1;

@@ -1,9 +1,10 @@
 package com.chess.game;
 
-public class WhiteTurns extends Thread {
-    private Turns turns;
+public class BlackTurns extends Thread {
 
-    public WhiteTurns(Turns turns) {
+    private final Turns turns;
+
+    public BlackTurns(Turns turns) {
         this.turns = turns;
     }
 
@@ -18,5 +19,5 @@ public class WhiteTurns extends Thread {
             }
         }
     }
-}
 
+}

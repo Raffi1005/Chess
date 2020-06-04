@@ -18,9 +18,8 @@ public class Knight extends Piece {
     @Override
     public int[][] drawPath(int start_x, int start_y, int final_x, int final_y) {
         int pairs = 0; //knights can leap, so a path is not necessary
-        int[][] path = new int[2][pairs];
 
-        return path;
+        return new int[2][pairs];
     }
 
     @Override

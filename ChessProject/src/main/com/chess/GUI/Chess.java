@@ -1,7 +1,6 @@
 package com.chess.GUI;
 
 import com.chess.game.*;
-
 import javax.swing.*;
 
 public class Chess {
@@ -14,6 +13,7 @@ public class Chess {
     public Chess(ChessBoardGUI gui) {
         this.gui = gui;
     }
+
 
     public void gameLoop() {
         if (isRestarted) {
@@ -52,14 +52,6 @@ public class Chess {
         while (!gui.game.blackPlayer.isLoser && !gui.game.whitePlayer.isLoser) {
 
             gui.addCurrPlayer();
-
-            if (gui.currPlayer.playerColor == Color.WHITE) {
-
-            }
-            if (gui.currPlayer.playerColor == Color.BLACK) {
-
-
-            }
 
             if (isRestarted) {
                 gameLoop();
@@ -106,14 +98,18 @@ public class Chess {
             winner = gui.game.whitePlayer.playerColor.toString();
         else
             winner = gui.game.blackPlayer.playerColor.toString();
-        int returnValue = JOptionPane.showOptionDialog(null, winner + " WON. Play a new game?", "GAME OVER",
-                JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE, null, buttons, buttons[0]);
-        if (returnValue == 1)
-            System.exit(0);
-        else {
-            isRestarted = true;
-            gameLoop();
-        }
+        int returnValue;
+        do {
+            returnValue = JOptionPane.showOptionDialog(null, winner + " WON. Play a new game?", "GAME OVER",
+                    JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, buttons, buttons[0]);
+            if (returnValue == 1)
+                System.exit(0);
+            if(returnValue==0)
+            {
+                isRestarted = true;
+                gameLoop();
+            }
+        }while(returnValue==-1);
     }
 
     public void setRestarted() {

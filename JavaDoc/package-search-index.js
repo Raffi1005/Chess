@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"com.chess.exceptions"},{"l":"com.chess.game"},{"l":"com.chess.GUI"},{"l":"com.chess.pieces"}]

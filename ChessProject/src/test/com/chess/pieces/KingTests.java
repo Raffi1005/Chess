@@ -100,6 +100,8 @@ public class KingTests {
         Assert.assertEquals(true, game.whitePlayer.isLoser);
     }
 
+
+
     @Test
     public void isGameEndingForBlack() {
         Game game = new Game();

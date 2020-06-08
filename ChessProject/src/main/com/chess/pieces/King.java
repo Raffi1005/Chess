@@ -14,7 +14,7 @@ public class King extends Piece {
     @Override
     public boolean isValidPath(int final_x, int final_y) {
 
-        return Math.abs(final_x - this.x) == 1 || Math.abs(final_y - this.y) == 1;
+        return (Math.abs(final_x - this.x) == 1 && Math.abs(final_y - this.y) == 1)||(Math.abs(final_x - this.x) == 1 && Math.abs(final_y - this.y) == 0)||(Math.abs(final_x - this.x) == 0 && Math.abs(final_y - this.y) == 1);
     }
 
     @Override

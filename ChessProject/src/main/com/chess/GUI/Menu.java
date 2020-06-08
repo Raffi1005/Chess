@@ -1,7 +1,6 @@
 package com.chess.GUI;
 
 import javax.swing.*;
-
 /**
  * Game of chess for project
  * @author Michal Potent
@@ -12,6 +11,9 @@ public class Menu {
         createMenu();
     }
 
+    /**
+     * Creates Menu
+     */
     public void createMenu()
     {
         ChessBoardGUI gui = new ChessBoardGUI();

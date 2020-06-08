@@ -64,6 +64,9 @@ public class ChessBoardGUI extends JPanel {
         });
     }
 
+    /**
+     * Starting game
+     */
     public void startGame() {
         String[] buttons2 = {"15:00", "10:00", "5:00"};
             int time = JOptionPane.showOptionDialog(null, "Choose game length", "MENU",

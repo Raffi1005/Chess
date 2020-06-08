@@ -18,7 +18,9 @@ public class Game {
         StartGame();
     }
 
-
+    /**
+     * Creates game, setting up board, players and pieces
+     */
     private void StartGame() {
         gameBoard = new Board(this);
         setPlayers();
@@ -35,6 +37,9 @@ public class Game {
     }
 
 
+    /**
+     * 50% chance to be first move
+     */
     private void isFirst() {
         Random rand = new Random();
         if (rand.nextBoolean())

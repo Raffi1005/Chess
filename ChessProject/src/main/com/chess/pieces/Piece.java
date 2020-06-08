@@ -8,8 +8,9 @@ public abstract class Piece {
     public Player player;
 
     /**
-     * @param x
-     * @param y
+     * Pawn Constructor
+     * @param x Starting x-axis
+     * @param y Starting y-axis
      * @param player
      */
     Piece(int x, int y, Player player) {
@@ -20,6 +21,7 @@ public abstract class Piece {
     }
 
     /**
+     * Check if path is clear
      * @param final_x
      * @param final_y
      * @return

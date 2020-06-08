@@ -30,7 +30,20 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="Code clean-up and fixed only white playere starts bug." />
+    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="Code clean-up and fixed only white playere starts bug.">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ChessProject/src/main/com/chess/GUI/Chess.java" beforeDir="false" afterPath="$PROJECT_DIR$/ChessProject/src/main/com/chess/GUI/Chess.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ChessProject/src/main/com/chess/GUI/ChessBoardGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/ChessProject/src/main/com/chess/GUI/ChessBoardGUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ChessProject/src/main/com/chess/GUI/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/ChessProject/src/main/com/chess/GUI/Menu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ChessProject/src/main/com/chess/GUI/MyTimer.java" beforeDir="false" afterPath="$PROJECT_DIR$/ChessProject/src/main/com/chess/GUI/MyTimer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ChessProject/src/main/com/chess/game/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/ChessProject/src/main/com/chess/game/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ChessProject/src/main/com/chess/pieces/Pawn.java" beforeDir="false" afterPath="$PROJECT_DIR$/ChessProject/src/main/com/chess/pieces/Pawn.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ChessProject/src/main/com/chess/pieces/Piece.java" beforeDir="false" afterPath="$PROJECT_DIR$/ChessProject/src/main/com/chess/pieces/Piece.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ChessProject/src/test/com/chess/pieces/PawnTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/ChessProject/src/test/com/chess/pieces/PawnTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Chess_jar/Chess.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/Chess_jar/Chess.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Chess/com/chess/pieces/Pawn.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Chess/com/chess/pieces/Pawn.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/test/Chess/com/chess/pieces/PawnTests.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/test/Chess/com/chess/pieces/PawnTests.class" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -271,7 +284,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="RookTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="PawnTests.canNotMoveTwo" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Chess" />
       <extension name="coverage">
         <pattern>
@@ -280,8 +293,9 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="com.chess.pieces" />
-      <option name="MAIN_CLASS_NAME" value="com.chess.pieces.RookTests" />
-      <option name="TEST_OBJECT" value="class" />
+      <option name="MAIN_CLASS_NAME" value="com.chess.pieces.PawnTests" />
+      <option name="METHOD_NAME" value="canNotMoveTwo" />
+      <option name="TEST_OBJECT" value="method" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="TEST_SEARCH_SCOPE">
         <value defaultName="moduleWithDependencies" />
@@ -324,10 +338,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.Menu" />
+        <item itemvalue="JUnit.PawnTests.canNotMoveTwo" />
         <item itemvalue="JUnit.GameTest" />
         <item itemvalue="JUnit.All in Chess" />
         <item itemvalue="JUnit.KingTests.isGameEndingForWhite" />
-        <item itemvalue="JUnit.RookTests" />
       </list>
     </recent_temporary>
   </component>
@@ -414,6 +428,11 @@
       <workItem from="1591262920164" duration="5398000" />
       <workItem from="1591268381816" duration="876000" />
       <workItem from="1591272071964" duration="224000" />
+      <workItem from="1591272307280" duration="109000" />
+      <workItem from="1591282719659" duration="15000" />
+      <workItem from="1591433975294" duration="628000" />
+      <workItem from="1591631703346" duration="84000" />
+      <workItem from="1591637244920" duration="822000" />
     </task>
     <task id="LOCAL-00001" summary="Fixing bugs">
       <created>1586205657024</created>
@@ -534,7 +553,14 @@
       <option name="project" value="LOCAL" />
       <updated>1591268957148</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="Code clean-up and fixed only white playere starts bug.">
+      <created>1591272399817</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1591272399817</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -644,26 +670,26 @@
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state x="549" y="174" key="FileChooserDialogImpl/0.0.1536.864@0.0.1536.864" timestamp="1591272289404" />
-    <state width="1493" height="222" key="GridCell.Tab.0.bottom" timestamp="1591268842496">
+    <state width="1493" height="222" key="GridCell.Tab.0.bottom" timestamp="1591434602670">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state width="1493" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1588344461705" />
-    <state width="1493" height="222" key="GridCell.Tab.0.bottom/0.0.1536.864@0.0.1536.864" timestamp="1591268842496" />
-    <state width="1493" height="222" key="GridCell.Tab.0.center" timestamp="1591268842496">
+    <state width="1493" height="222" key="GridCell.Tab.0.bottom/0.0.1536.864@0.0.1536.864" timestamp="1591434602670" />
+    <state width="1493" height="222" key="GridCell.Tab.0.center" timestamp="1591434602670">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state width="1493" height="210" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1588344461705" />
-    <state width="1493" height="222" key="GridCell.Tab.0.center/0.0.1536.864@0.0.1536.864" timestamp="1591268842496" />
-    <state width="1493" height="222" key="GridCell.Tab.0.left" timestamp="1591268842496">
+    <state width="1493" height="222" key="GridCell.Tab.0.center/0.0.1536.864@0.0.1536.864" timestamp="1591434602670" />
+    <state width="1493" height="222" key="GridCell.Tab.0.left" timestamp="1591434602670">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state width="1493" height="210" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1588344461705" />
-    <state width="1493" height="222" key="GridCell.Tab.0.left/0.0.1536.864@0.0.1536.864" timestamp="1591268842496" />
-    <state width="1493" height="222" key="GridCell.Tab.0.right" timestamp="1591268842496">
+    <state width="1493" height="222" key="GridCell.Tab.0.left/0.0.1536.864@0.0.1536.864" timestamp="1591434602670" />
+    <state width="1493" height="222" key="GridCell.Tab.0.right" timestamp="1591434602670">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state width="1493" height="210" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1588344461705" />
-    <state width="1493" height="222" key="GridCell.Tab.0.right/0.0.1536.864@0.0.1536.864" timestamp="1591268842496" />
+    <state width="1493" height="222" key="GridCell.Tab.0.right/0.0.1536.864@0.0.1536.864" timestamp="1591434602670" />
     <state width="1493" height="277" key="GridCell.Tab.1.bottom" timestamp="1589471324427">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
@@ -688,10 +714,10 @@
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state x="249" y="7" key="SettingsEditor/0.0.1536.864@0.0.1536.864" timestamp="1591268274290" />
-    <state x="361" y="165" key="Vcs.Push.Dialog.v2" timestamp="1591268960896">
+    <state x="361" y="165" key="Vcs.Push.Dialog.v2" timestamp="1591272401721">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state x="361" y="165" key="Vcs.Push.Dialog.v2/0.0.1536.864@0.0.1536.864" timestamp="1591268960896" />
+    <state x="361" y="165" key="Vcs.Push.Dialog.v2/0.0.1536.864@0.0.1536.864" timestamp="1591272401721" />
     <state x="583" y="210" key="chooseDestDirectoryDialog" timestamp="1591267559945">
       <screen x="0" y="0" width="1536" height="864" />
     </state>

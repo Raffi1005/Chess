@@ -25,6 +25,10 @@ public class MyTimer extends JPanel {
     private final ExecutorService executor = Executors.newFixedThreadPool(2);
 
 
+    /**
+     * Timer
+     * @param time
+     */
     public MyTimer(int time) {
         this.times=time;
         setLayout(new BorderLayout());

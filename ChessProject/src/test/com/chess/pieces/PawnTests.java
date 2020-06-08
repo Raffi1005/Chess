@@ -14,8 +14,15 @@ public class PawnTests {
     public void canMoveTwo() {
         Game game = new Game();
         Piece pawn = new Pawn(1, 1, game.blackPlayer);
-
         game.gameBoard.movePiece(pawn, 1, 3); //move two spaces forward
+        Assert.assertEquals(pawn, game.gameBoard.boardArray[1][3]);
+    }
+
+    @Test
+    public void canNotMoveTwo() {
+        Game game = new Game();
+        Piece pawn = new Pawn(1, 3, game.blackPlayer);
+        game.gameBoard.movePiece(pawn, 1, 5); //move two spaces forward
         Assert.assertEquals(pawn, game.gameBoard.boardArray[1][3]);
     }
 

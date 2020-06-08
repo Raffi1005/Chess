@@ -60,8 +60,8 @@ public class Pawn extends Piece {
 
         Piece[][] board = this.player.myGame.gameBoard.boardArray;
         return (final_x == this.x && AbsY_dif == 2 && board[final_x][final_y] == null) &&
-                ((this.player.playerColor == Color.WHITE && board[this.x][this.y - 1] == null) ||
-                        (this.player.playerColor == Color.BLACK && board[this.x][this.y + 1] == null));
+                ((this.player.playerColor == Color.WHITE && board[this.x][this.y-1] == null&&this.y==6) ||
+                        (this.player.playerColor == Color.BLACK && board[this.x][this.y+1] == null&&this.y==1));
 
     }
 

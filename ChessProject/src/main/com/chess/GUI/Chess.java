@@ -8,13 +8,16 @@ public class Chess {
     boolean isRestarted = false;
 
     /**
+     * Game loop
      * @param gui
      */
     public Chess(ChessBoardGUI gui) {
         this.gui = gui;
     }
 
-
+    /**
+     * Game loop
+     */
     public void gameLoop() {
         if (isRestarted) {
             gui.resetGrid();
@@ -117,6 +120,7 @@ public class Chess {
     }
 
     /**
+     *
      * @return
      */
     public String getCurrPlayer() {

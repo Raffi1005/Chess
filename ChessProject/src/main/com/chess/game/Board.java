@@ -13,6 +13,8 @@ public class Board {
     public Piece[][] boardArray;
     protected Vector<Piece> whitePieces = new Vector<>(16);
     protected Vector<Piece> blackPieces = new Vector<>(16);
+    private boolean isWPrzelocieBiale;
+    private boolean isWPrzelocieCzarne;
 
     /**
      * Board constructor
@@ -94,9 +96,49 @@ public class Board {
         if (piece.isValidPath(final_x, final_y) && isValidMove(piece, final_x, final_y)) {
             if (isCapture(piece, final_x, final_y)) {
                 game.capture = true;
+                if(isWPrzelocieBiale)
+                {
+                    boardArray[final_x][final_y+1] = null;
+                    isWPrzelocieBiale=false;
+                    game.wPrzelocie=true;
+                }
+                else if(isWPrzelocieCzarne)
+                {
+                    boardArray[final_x][final_y-1] = null;
+                    isWPrzelocieCzarne=false;
+                    game.wPrzelocie=true;
+                }
+                else
                 boardArray[final_x][final_y] = null;
             }
+            if(piece.roszada==true)
+            {
+                if(final_y==0)
+                {
+                    if(final_x==2)
+                    {
+                        setNewPieceLocation(boardArray[0][0],3,0);
+                    }
+                    if(final_x==6)
+                    {
+                        setNewPieceLocation(boardArray[7][0],5,0);
+                    }
+                }
+                if(final_y==7)
+                {
+                    if(final_x==2)
+                    {
+                        setNewPieceLocation(boardArray[0][7],3,7);
+                    }
+                    if(final_x==6)
+                    {
+                        setNewPieceLocation(boardArray[7][7],5,7);
+                    }
+                }
+                game.roszada=true;
+            }
             setNewPieceLocation(piece, final_x, final_y);
+
         } else {
             try {
                 throw new InvalidMovementException();
@@ -196,6 +238,26 @@ public class Board {
      * @return
      */
     protected boolean isCapture(Piece piece, int final_x, int final_y) {
+
+        if(piece.getType()==Type.PAWN)
+        {
+            if(piece.player.playerColor == Color.WHITE&&boardArray[final_x][final_y+1]!=null){
+            if(boardArray[final_x][final_y] == null
+                    &&boardArray[final_x][final_y+1].player.playerColor == Color.BLACK
+                    &&boardArray[final_x][final_y+1].getIsMovedTwo()) {
+                    isWPrzelocieBiale = true;
+                    return true;
+                }
+            }
+            if(piece.player.playerColor == Color.BLACK&&boardArray[final_x][final_y-1]!=null){
+            if(boardArray[final_x][final_y] == null
+                    &&boardArray[final_x][final_y-1].player.playerColor == Color.WHITE
+                    &&boardArray[final_x][final_y-1].getIsMovedTwo()) {
+                    isWPrzelocieCzarne = true;
+                    return true;
+                }
+            }
+        }
         if (boardArray[final_x][final_y] != null &&
                 boardArray[final_x][final_y].player != piece.player) {
             if (boardArray[final_x][final_y].getType() == Type.KING) {

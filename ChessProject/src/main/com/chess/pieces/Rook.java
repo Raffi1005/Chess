@@ -52,5 +52,10 @@ public class Rook extends Piece {
         return Type.ROOK;
     }
 
+    @Override
+    public boolean getIsMovedTwo() {
+        return false;
+    }
+
 
 }

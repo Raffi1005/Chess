@@ -26,4 +26,9 @@ public class Knight extends Piece {
     public Type getType() {
         return Type.KNIGHT;
     }
+
+    @Override
+    public boolean getIsMovedTwo() {
+        return false;
+    }
 }

@@ -64,4 +64,9 @@ public class Queen extends Piece {
     public Type getType() {
         return Type.QUENN;
     }
+
+    @Override
+    public boolean getIsMovedTwo() {
+        return false;
+    }
 }

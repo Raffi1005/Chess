@@ -55,4 +55,9 @@ public class Bishop extends Piece {
     public Type getType() {
         return Type.BISHOP;
     }
+
+    @Override
+    public boolean getIsMovedTwo() {
+        return false;
+    }
 }

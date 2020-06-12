@@ -345,7 +345,18 @@ public class ChessBoardGUI extends JPanel {
                         selectedPiece = null;
                         game.invalid = false;
                         return;
-                    } else {
+                    } else if(game.roszada) {
+                        Icon img = selectedSquare.getIcon();
+                        button.setIcon(img);
+                        selectedSquare.setIcon(null);
+                    }
+                    else if(game.wPrzelocie){
+                        button.setIcon(null);
+                        Icon img = selectedSquare.getIcon();
+                        button.setIcon(img);
+                        selectedSquare.setIcon(null);
+                    }
+                    else{
                         Icon img = selectedSquare.getIcon();
                         button.setIcon(img);
                         selectedSquare.setIcon(null);
@@ -524,6 +535,8 @@ public class ChessBoardGUI extends JPanel {
                 }
             }
         }
+
+
     }
 
 }

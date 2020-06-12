@@ -9,7 +9,7 @@ public class Game {
     public static int whiteTurn;
     public static int blackTurn;
     final static int standardHeight = 8, standardWidth = 8;
-    public boolean invalid = false, capture = false;
+    public boolean invalid = false, capture = false,roszada=false,wPrzelocie=false;
 
     /**
      * Starting game

@@ -6,6 +6,8 @@ public abstract class Piece {
     public int x;
     public int y;
     public Player player;
+    public boolean isMovedTwo;
+    public boolean roszada=false;
 
     /**
      * Pawn Constructor
@@ -18,6 +20,7 @@ public abstract class Piece {
         this.y = y;
         this.player = player;
         this.player.myGame.gameBoard.boardArray[x][y] = this;
+        this.isMovedTwo=false;
     }
 
     /**
@@ -41,6 +44,8 @@ public abstract class Piece {
      * @return
      */
     public abstract Type getType();
+
+    public abstract boolean getIsMovedTwo();
 
 
 }

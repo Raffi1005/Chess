@@ -11,6 +11,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.util.ArrayList;
 
 
 public class ChessBoardGUI extends JPanel {
@@ -32,6 +33,7 @@ public class ChessBoardGUI extends JPanel {
     private JLabel player;
     private JLabel whiteTurn;
     private JLabel blackTurn;
+    public JButton[][] buttonsArray;
 
     public synchronized void waitForInput() {
         while (!endTurn) {
@@ -349,12 +351,58 @@ public class ChessBoardGUI extends JPanel {
                         Icon img = selectedSquare.getIcon();
                         button.setIcon(img);
                         selectedSquare.setIcon(null);
+                        System.out.println((button.getLocation(rv).x / 90));
+                        System.out.println((button.getLocation(rv).y / 90));
+                        if((button.getLocation(rv).y / 90)==0)
+                        {
+                            if((button.getLocation(rv).x / 90)==2)
+                            {
+                                JButton button1 = buttonsArray[0][0];
+                                img = button1.getIcon();
+                                button1.setIcon(null);
+                                buttonsArray[3][0].setIcon(img);
+                            }
+                            else
+                            {
+                                JButton button1 = buttonsArray[7][0];
+                                img = button1.getIcon();
+                                button1.setIcon(null);
+                                buttonsArray[5][0].setIcon(img);
+                            }
+                        }
+                        else
+                        {
+                            if((button.getLocation(rv).x / 90)==2)
+                            {
+                                JButton button1 = buttonsArray[0][7];
+                                img = button1.getIcon();
+                                button1.setIcon(null);
+                                buttonsArray[3][7].setIcon(img);
+                            }
+                            else
+                            {
+                                JButton button1 = buttonsArray[7][7];
+                                img = button1.getIcon();
+                                button1.setIcon(null);
+                                buttonsArray[5][7].setIcon(img);
+                            }
+                        }
+                        game.roszada=false;
                     }
                     else if(game.wPrzelocie){
                         button.setIcon(null);
                         Icon img = selectedSquare.getIcon();
                         button.setIcon(img);
                         selectedSquare.setIcon(null);
+                        if(selectedPiece.player.playerColor== com.chess.game.Color.WHITE) {
+                            JButton button1 = buttonsArray[button.getLocation(rv).x / 90][(button.getLocation(rv).y / 90) + 1];
+                            button1.setIcon(null);
+                        }
+                        else{
+                            JButton button1 = buttonsArray[button.getLocation(rv).x / 90][(button.getLocation(rv).y / 90) - 1];
+                            button1.setIcon(null);
+                        }
+                        game.wPrzelocie=false;
                     }
                     else{
                         Icon img = selectedSquare.getIcon();
@@ -392,7 +440,7 @@ public class ChessBoardGUI extends JPanel {
 
         public ChessWindow() {
             setLayout(new GridLayout(8, 8));
-
+            buttonsArray = new JButton[8][8];
             GridBagConstraints gbc = new GridBagConstraints();
 
             for (int row = 0; row < 8; row++) {
@@ -521,6 +569,7 @@ public class ChessBoardGUI extends JPanel {
                             System.out.println("Could not find file.");
                         }
                     }
+                    buttonsArray[col][row] = button;
 
                     button.setBorderPainted(true);
                     button.setPreferredSize(new Dimension(90, 90));

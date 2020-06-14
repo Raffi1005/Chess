@@ -101,17 +101,19 @@ public class Board {
                     boardArray[final_x][final_y+1] = null;
                     isWPrzelocieBiale=false;
                     game.wPrzelocie=true;
+                    game.capture=false;
                 }
                 else if(isWPrzelocieCzarne)
                 {
                     boardArray[final_x][final_y-1] = null;
                     isWPrzelocieCzarne=false;
                     game.wPrzelocie=true;
+                    game.capture=false;
                 }
                 else
                 boardArray[final_x][final_y] = null;
             }
-            if(piece.roszada==true)
+            if(piece.roszada)
             {
                 if(final_y==0)
                 {
